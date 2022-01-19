@@ -56,7 +56,15 @@ const ExtraOptions = ({ extra }) => {
 								</Button>
 							) : (
 								<Button
-									sx={{ px: 2, py: 1 }}
+									style={{ backgroundColor: "transparent" }}
+									sx={{
+										px: 2,
+										py: 1,
+										bgcolor: "#EAECEE",
+										color: "black",
+										fontWeight: "bold",
+										border: "1px solid",
+									}}
 									variant='contained'
 									onClick={() => save(extra)}>
 									Select

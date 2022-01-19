@@ -57,10 +57,11 @@ const ChooseVehicle = () => {
 					<Box
 						sx={{
 							width: "100%",
-							bgcolor: "#1976D2",
+							bgcolor: "#EAECEE",
 							py: 1,
-							color: "white",
+							color: "black",
 							my: 2,
+							fontWeight: "bold",
 						}}>
 						<Typography gutterBottom variant='body' component='div'>
 							PASSENGERS AND LUGGAGE
@@ -74,10 +75,11 @@ const ChooseVehicle = () => {
 					<Box
 						sx={{
 							width: "100%",
-							bgcolor: "#1976D2",
+							bgcolor: "#EAECEE",
 							py: 1,
-							color: "white",
+							color: "black",
 							my: 2,
+							fontWeight: "bold",
 						}}>
 						<Typography gutterBottom variant='body' component='div'>
 							Extra options

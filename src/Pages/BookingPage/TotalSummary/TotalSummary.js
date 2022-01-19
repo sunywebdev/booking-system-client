@@ -31,7 +31,7 @@ const TotalSummary = () => {
 			</Box>
 			<Grid container spacing={3}>
 				<Grid item md={4} xs={12}>
-					<Box sx={{ textAlign: "left", bgcolor: "#F6F6F6" }}>
+					<Box sx={{ textAlign: "left", bgcolor: "#F6F6F6", p: 1.5 }}>
 						<Typography
 							gutterBottom
 							variant='h5'
@@ -89,7 +89,7 @@ const TotalSummary = () => {
 					</Box>
 				</Grid>
 				<Grid item md={4} xs={12}>
-					<Box sx={{ textAlign: "left", bgcolor: "#F6F6F6" }}>
+					<Box sx={{ textAlign: "left", bgcolor: "#F6F6F6", p: 1.5 }}>
 						<Typography
 							gutterBottom
 							variant='h5'
@@ -115,7 +115,7 @@ const TotalSummary = () => {
 					</Box>
 				</Grid>
 				<Grid item md={4} xs={12}>
-					<Box sx={{ textAlign: "left", bgcolor: "#F6F6F6" }}>
+					<Box sx={{ textAlign: "left", bgcolor: "#F6F6F6", p: 1.5 }}>
 						<Typography
 							gutterBottom
 							variant='h5'
@@ -151,7 +151,7 @@ const TotalSummary = () => {
 			</Grid>
 			<Grid container spacing={2}>
 				<Grid item md={6} xs={5}>
-					<Link to='/' style={{ textDecoration: "none" }}>
+					<Link to='/contactdetails' style={{ textDecoration: "none" }}>
 						<Button variant='contained' sx={{ width: "100%", py: 1.7, mt: 2 }}>
 							<ArrowBackIcon sx={{ mr: 1 }} />
 							Back

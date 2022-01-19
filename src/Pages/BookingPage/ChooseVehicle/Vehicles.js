@@ -120,7 +120,15 @@ const Vehicles = ({ setData }) => {
 											</Button>
 										) : (
 											<Button
-												sx={{ px: 3, py: 1.5 }}
+												style={{ backgroundColor: "transparent" }}
+												sx={{
+													px: 3,
+													py: 1.5,
+													bgcolor: "#EAECEE",
+													color: "black",
+													fontWeight: "bold",
+													border: "1px solid",
+												}}
 												variant='contained'
 												onClick={() => setCar(car)}>
 												Select
