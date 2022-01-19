@@ -1,3 +1,24 @@
 .App {
 	text-align: center;
 }
+.buttonColor {
+	background-color: #252525 !important;
+}
+.headline {
+	color: black !important;
+	background-color: #eaecee !important;
+}
+.payBorder {
+	border-color: #252525 !important;
+}
+.MuiBadge-badge {
+	background-color: #252525 !important;
+}
+.MuiTabs-flexContainer {
+	background-color: #252525 !important;
+	color: white !important;
+	border-top: 1px solid white !important;
+}
+.MuiButtonBase-root-MuiTab-root.Mui-selected {
+	border-color: #252525 !important;
+}

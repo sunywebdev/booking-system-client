@@ -1,4 +1,11 @@
-import { CardMedia, Container, Grid, Paper, Typography } from "@mui/material";
+import {
+	Box,
+	CardMedia,
+	Container,
+	Grid,
+	Paper,
+	Typography,
+} from "@mui/material";
 import { useState } from "react";
 import a from "./2.jpg";
 import b from "./3.jpg";
@@ -18,17 +25,27 @@ const PaymentMethod = () => {
 
 	return (
 		<Container sx={{ mx: "auto" }}>
-			<Typography gutterBottom variant='h5' component='div'>
-				Choose payment method
-			</Typography>
+			<Box
+				className='headline'
+				sx={{
+					width: "100%",
+					py: 1.5,
+					my: 2,
+				}}>
+				<Typography variant='body' component='div'>
+					Choose payment method
+				</Typography>
+			</Box>
+
 			<Grid container spacing={2} sx={{ justifyContent: "center" }}>
 				{payment?.map((pay) => (
-					<Grid item md={4}>
+					<Grid item md={4} xs={6}>
 						{select === pay?.id ? (
 							<Paper
 								elevation={4}
 								onClick={() => selected(pay)}
-								sx={{ border: "5px solid red" }}>
+								sx={{ border: "5px solid" }}
+								className='payBorder'>
 								<CardMedia component='img' alt=' ' image={pay?.img} />
 							</Paper>
 						) : (

@@ -40,8 +40,8 @@ export default function Tab2() {
 		reset(data);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-		const navigate = useNavigate();
-		const destination = "/choosevehicle";
+	const navigate = useNavigate();
+	const destination = "/choosevehicle";
 	const onSubmit = ({ picupLocation2, dropOffLocation2 }) => {
 		const data = {
 			time2: dateTime,
@@ -65,7 +65,9 @@ export default function Tab2() {
 								inputFormat='MM/dd/yyyy'
 								value={dateTime}
 								onChange={handleChange}
-								renderInput={(params) => <TextField fullWidth {...params} />}
+								renderInput={(params) => (
+									<TextField required fullWidth {...params} />
+								)}
 							/>
 						</Grid>
 
@@ -93,6 +95,7 @@ export default function Tab2() {
 									DURATION (IN HOURS)
 								</FormHelperText>
 								<Select
+									required
 									value={duration}
 									onChange={handleExtraHourChange}
 									displayEmpty
@@ -121,6 +124,7 @@ export default function Tab2() {
 						<Grid item md={12} xs={12}>
 							<Button
 								type='submit'
+								className='buttonColor'
 								sx={{ width: "100%", py: 1.7 }}
 								variant='contained'
 								endIcon={<SendIcon />}>

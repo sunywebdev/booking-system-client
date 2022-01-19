@@ -42,14 +42,13 @@ const ContactForm = () => {
 	return (
 		<Container>
 			<Box
+				className='headline'
 				sx={{
 					width: "100%",
-					bgcolor: "#1976D2",
-					py: 1,
-					color: "white",
+					py: 1.5,
 					my: 2,
 				}}>
-				<Typography gutterBottom variant='body' component='div'>
+				<Typography variant='body' component='div'>
 					Contact Details
 				</Typography>
 			</Box>
@@ -113,12 +112,13 @@ const ContactForm = () => {
 								<PaymentMethod />
 							</Grid>
 							<Grid item md={12} xs={12}>
-								<Grid container spacing={2}>
-									<Grid item md={6} xs={5}>
+								<Grid container spacing={{ md: 2, xs: 0 }}>
+									<Grid item md={6} xs={12}>
 										<Link
 											to='/choosevehicle'
 											style={{ textDecoration: "none" }}>
 											<Button
+												className='buttonColor'
 												variant='contained'
 												sx={{ width: "100%", py: 1.7, mt: 2 }}>
 												<ArrowBackIcon sx={{ mr: 1 }} />
@@ -126,8 +126,9 @@ const ContactForm = () => {
 											</Button>
 										</Link>
 									</Grid>
-									<Grid item md={6} xs={5}>
+									<Grid item md={6} xs={12}>
 										<Button
+											className='buttonColor'
 											type='submit'
 											sx={{ width: "100%", py: 1.7, mt: 2 }}
 											variant='contained'

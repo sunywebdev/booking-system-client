@@ -66,7 +66,9 @@ export default function Tab1() {
 								inputFormat='MM/dd/yyyy'
 								value={dateTime}
 								onChange={handleChange}
-								renderInput={(params) => <TextField fullWidth {...params} />}
+								renderInput={(params) => (
+									<TextField required fullWidth {...params} />
+								)}
 							/>
 						</Grid>
 
@@ -120,6 +122,7 @@ export default function Tab1() {
 						<Grid item md={12} xs={12}>
 							<Button
 								type='submit'
+								className='buttonColor'
 								sx={{ width: "100%", py: 1.7 }}
 								variant='contained'
 								endIcon={<SendIcon />}>

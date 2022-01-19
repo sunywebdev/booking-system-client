@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import AuthProvider from "./context/AuthProvider";
-import BookingPage from "./Pages/BookingPage/BookingPage";
 import ChooseVehicle from "./Pages/BookingPage/ChooseVehicle/ChooseVehicle";
 import Contact from "./Pages/BookingPage/Contact/Contact";
 import RideDetails from "./Pages/BookingPage/RideDetails/RideDetails";
@@ -20,11 +19,9 @@ function App() {
 						<Route path='/login' element={<Login />}></Route>
 						<Route path='/signup' element={<SignUp />}></Route>
 						<Route path='/resetpassword' element={<ResetPass />}></Route>
-						<Route path='/main' element={<BookingPage />}></Route>
 						<Route path='/choosevehicle' element={<ChooseVehicle />}></Route>
 						<Route path='/contactdetails' element={<Contact />}></Route>
 						<Route path='/totalsummary' element={<TotalSummary />}></Route>
-						<Route path='/xx' element={<BookingPage />}></Route>
 					</Routes>
 				</BrowserRouter>
 			</AuthProvider>

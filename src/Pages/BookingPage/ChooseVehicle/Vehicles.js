@@ -1,6 +1,5 @@
 import { Badge, Button, Divider, Grid } from "@mui/material";
 import React from "react";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
@@ -14,6 +13,8 @@ const Vehicles = ({ setData }) => {
 	const cars = [
 		{
 			carId: 1,
+			carLuggage: 5,
+			carPassenger: 5,
 			carName: "Mercedes-Benz E220",
 			carInfo:
 				"Do not worry about missing an important meeting because of road conditions, just relax in your reclining leather seat. A great choice for a business meeting or a business trip.",
@@ -23,6 +24,8 @@ const Vehicles = ({ setData }) => {
 		},
 		{
 			carId: 2,
+			carLuggage: 5,
+			carPassenger: 5,
 			carName: "BMW 5 Series Long",
 			carInfo:
 				"The mid-size luxury sedan by BMW with great V8 engine with both natural aspiration and turbocharging. A great option for corporate travel.",
@@ -32,6 +35,8 @@ const Vehicles = ({ setData }) => {
 		},
 		{
 			carId: 3,
+			carLuggage: 5,
+			carPassenger: 5,
 			carName: "Mercedes-Benz S600",
 			carInfo:
 				"The world's best-selling luxury sedan with many of the company's latest innovations, including drivetrain technologies, interior features, and safety systems that give you the peace of mind you deserve.",
@@ -41,6 +46,8 @@ const Vehicles = ({ setData }) => {
 		},
 		{
 			carId: 4,
+			carLuggage: 5,
+			carPassenger: 5,
 			carName: "Ford Tourneo",
 			carInfo:
 				"Comfortable Van for 7 passengers with plenty of leg room and a spacious trunk.",
@@ -68,7 +75,7 @@ const Vehicles = ({ setData }) => {
 						sx={{
 							textAlign: "left",
 						}}>
-						<Grid container spacing={2}>
+						<Grid container spacing={2} sx={{ alignItems: "center" }}>
 							<Grid item md={4} xs={12}>
 								<CardMedia
 									sx={{ width: "100%" }}
@@ -95,47 +102,53 @@ const Vehicles = ({ setData }) => {
 									</Typography>
 								</CardContent>
 							</Grid>
-							<Grid item md={3} xs={12} display='flex'>
-								<CardActions
-									sx={{
-										flexDirection: { md: "column", xs: "row" },
-										justifyContent: { md: " space-evenly", xs: "center" },
-									}}>
-									<Box>
-										<Badge badgeContent={4} color='primary' sx={{ mx: 1 }}>
-											<GroupIcon sx={{ fontSize: 55 }} />
-										</Badge>
-										<Badge badgeContent={4} color='primary' sx={{ mx: 1 }}>
-											<LuggageIcon sx={{ fontSize: 55 }} />
-										</Badge>
-									</Box>
-
-									<Box>
-										{selectedId === car?.carId ? (
-											<Button
-												sx={{ px: 3, py: 1.5 }}
-												variant='contained'
-												onClick={() => setCar(car)}>
-												<CheckIcon sx={{ mr: 0.7 }} /> Select
-											</Button>
-										) : (
-											<Button
-												style={{ backgroundColor: "transparent" }}
-												sx={{
-													px: 3,
-													py: 1.5,
-													bgcolor: "#EAECEE",
-													color: "black",
-													fontWeight: "bold",
-													border: "1px solid",
-												}}
-												variant='contained'
-												onClick={() => setCar(car)}>
-												Select
-											</Button>
-										)}
-									</Box>
-								</CardActions>
+							<Grid item md={3} xs={12}>
+								<Grid container spacing={2} sx={{ mx: "auto" }}>
+									<Grid item md={12} xs={6}>
+										<Box sx={{ display: "flex" }}>
+											<Badge
+												badgeContent={car?.carPassenger}
+												color='primary'
+												sx={{ mx: 1 }}>
+												<GroupIcon sx={{ fontSize: 55 }} />
+											</Badge>
+											<Badge
+												badgeContent={car?.carLuggage}
+												color='primary'
+												sx={{ mx: 1 }}>
+												<LuggageIcon sx={{ fontSize: 55 }} />
+											</Badge>
+										</Box>
+									</Grid>
+									<Grid item md={12} xs={6} sx={{ m: "auto" }}>
+										<Box sx={{ mx: 2 }}>
+											{selectedId === car?.carId ? (
+												<Button
+													sx={{ px: 3, py: 1.5 }}
+													variant='contained'
+													className='buttonColor'
+													onClick={() => setCar(car)}>
+													<CheckIcon sx={{ mr: 0.7 }} /> Select
+												</Button>
+											) : (
+												<Button
+													style={{ backgroundColor: "transparent" }}
+													sx={{
+														px: 3,
+														py: 1.5,
+														bgcolor: "#EAECEE",
+														color: "black",
+														fontWeight: "bold",
+														border: "1px solid",
+													}}
+													variant='contained'
+													onClick={() => setCar(car)}>
+													Select
+												</Button>
+											)}
+										</Box>
+									</Grid>
+								</Grid>
 							</Grid>
 						</Grid>
 					</Box>

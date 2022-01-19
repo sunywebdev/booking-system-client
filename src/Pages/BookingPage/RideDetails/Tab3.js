@@ -13,7 +13,6 @@ import {
 	Grid,
 	MenuItem,
 	Select,
-	Typography,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { reactLocalStorage } from "reactjs-localstorage";
@@ -57,9 +56,6 @@ export default function Tab3() {
 	};
 	return (
 		<Container>
-			<Typography variant='h4' component='div' sx={{ mb: 2.5 }}>
-				RIDE DETAILS
-			</Typography>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<LocalizationProvider dateAdapter={AdapterDateFns}>
 					<Grid container spacing={2}>
@@ -78,13 +74,16 @@ export default function Tab3() {
 							<TimePicker
 								value={dateTime}
 								onChange={handleChange}
-								renderInput={(params) => <TextField fullWidth {...params} />}
+								renderInput={(params) => (
+									<TextField required fullWidth {...params} />
+								)}
 							/>
 						</Grid>
 						<Grid item md={12} xs={12}>
 							<FormControl fullWidth>
 								<FormHelperText sx={{ ml: 0 }}>ROUTE</FormHelperText>
 								<Select
+									required
 									value={location}
 									onChange={handleLocationChange}
 									displayEmpty
@@ -104,6 +103,7 @@ export default function Tab3() {
 							<FormControl fullWidth>
 								<FormHelperText sx={{ ml: 0 }}>TRANSFER TYPE</FormHelperText>
 								<Select
+									required
 									value={type}
 									onChange={handleTypeChange}
 									displayEmpty
@@ -122,6 +122,7 @@ export default function Tab3() {
 									DURATION (IN HOURS)
 								</FormHelperText>
 								<Select
+									required
 									value={duration}
 									onChange={handleExtraHourChange}
 									displayEmpty
@@ -140,6 +141,7 @@ export default function Tab3() {
 						<Grid item md={12} xs={12}>
 							<Button
 								type='submit'
+								className='buttonColor'
 								sx={{ width: "100%", py: 1.7 }}
 								variant='contained'
 								endIcon={<SendIcon />}>

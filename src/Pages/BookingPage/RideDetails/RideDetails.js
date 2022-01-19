@@ -7,7 +7,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import Tab1 from "./Tab1";
 import Tab2 from "./Tab2";
 import Tab3 from "./Tab3";
@@ -60,13 +60,23 @@ export default function RideDetails() {
 	};
 
 	return (
-		<>
+		<Container>
 			<Box sx={{ my: 2.5 }}>
 				<Step0 />
 			</Box>
 			<Grid container spacing={2}>
-				<Grid item md={7} xs={12} sx={{ mx: "auto" }}>
+				<Grid item md={12} xs={12} sx={{ mx: "auto" }}>
 					<Box sx={{ bgcolor: "background.paper" }}>
+						<Box
+							className='headline'
+							sx={{
+								width: "100%",
+								py: 1.5,
+							}}>
+							<Typography variant='body' component='div'>
+								RIDE DETAILS
+							</Typography>
+						</Box>
 						<AppBar position='static'>
 							<Tabs
 								value={value}
@@ -79,11 +89,6 @@ export default function RideDetails() {
 								<Tab label='HOURLY' {...a11yProps(1)} />
 								<Tab label='FLAT RATE' {...a11yProps(2)} />
 							</Tabs>
-							<Typography
-								variant='body'
-								sx={{ py: 1, bgcolor: "#EAECEE", color: "#1976D2" }}>
-								RIDE DETAILS
-							</Typography>
 						</AppBar>
 						<SwipeableViews
 							axis={theme.direction === "rtl" ? "x-reverse" : "x"}
@@ -102,6 +107,6 @@ export default function RideDetails() {
 					</Box>
 				</Grid>
 			</Grid>
-		</>
+		</Container>
 	);
 }

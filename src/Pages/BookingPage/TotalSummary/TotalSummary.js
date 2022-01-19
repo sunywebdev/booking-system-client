@@ -18,14 +18,18 @@ const TotalSummary = () => {
 	const vehicles = reactLocalStorage.getObject("vehicles");
 	const rideDetails = reactLocalStorage.getObject("rideDetails");
 	const contactDetails = reactLocalStorage.getObject("contactDetails");
+	const extraOpions = reactLocalStorage.getObject("extraOpions");
 	const confirm = () => {
-		console.log(vehicles);
-		console.log(rideDetails);
-		console.log(contactDetails);
+		console.log("Data", {
+			...vehicles,
+			...rideDetails,
+			...contactDetails,
+			...extraOpions,
+		});
 	};
 
 	return (
-		<Container>
+		<Container sx={{ mb: 2 }}>
 			<Box sx={{ my: 2.5 }}>
 				<Step3 />
 			</Box>
@@ -79,13 +83,6 @@ const TotalSummary = () => {
 							{rideDetails.time1 || rideDetails.time2 || rideDetails.time3}
 						</Typography>
 						<Divider sx={{ my: 1.5 }} />
-						<Typography gutterBottom variant='body' component='div'>
-							VEHICLE
-						</Typography>
-						<Typography gutterBottom variant='body2' component='div'>
-							{vehicles.carName}
-						</Typography>
-						<Divider sx={{ my: 1.5 }} />
 					</Box>
 				</Grid>
 				<Grid item md={4} xs={12}>
@@ -102,7 +99,7 @@ const TotalSummary = () => {
 							sx={{ width: "100%" }}
 							component='img'
 							image={vehicles.carPhoto}
-							alt='Paella dish'
+							alt=''
 						/>
 						<Divider sx={{ my: 1.5 }} />
 						<Typography gutterBottom variant='body' component='div'>
@@ -146,20 +143,37 @@ const TotalSummary = () => {
 							{rideDetails.time1 || rideDetails.time2 || rideDetails.time3}
 						</Typography>
 						<Divider sx={{ my: 1.5 }} />
+						<Typography gutterBottom variant='body2' component='div'>
+							<b>Child Seat</b> : {extraOpions.babySeat === true ? "Yes" : "No"}
+						</Typography>
+						<Divider sx={{ my: 1.5 }} />
+						<Typography gutterBottom variant='body2' component='div'>
+							<b>Car Seat</b> : {extraOpions.carSeat === true ? "Yes" : "No"}
+						</Typography>
+						<Divider sx={{ my: 1.5 }} />
+						<Typography gutterBottom variant='body2' component='div'>
+							<b>Wheel Chair</b> :{" "}
+							{extraOpions.wheelchair === true ? "Yes" : "No"}
+						</Typography>
+						<Divider sx={{ my: 1.5 }} />
 					</Box>
 				</Grid>
 			</Grid>
-			<Grid container spacing={2}>
-				<Grid item md={6} xs={5}>
+			<Grid container spacing={{ md: 2, xs: 0 }}>
+				<Grid item md={6} xs={12}>
 					<Link to='/contactdetails' style={{ textDecoration: "none" }}>
-						<Button variant='contained' sx={{ width: "100%", py: 1.7, mt: 2 }}>
+						<Button
+							className='buttonColor'
+							variant='contained'
+							sx={{ width: "100%", py: 1.7, mt: 2 }}>
 							<ArrowBackIcon sx={{ mr: 1 }} />
 							Back
 						</Button>
 					</Link>
 				</Grid>
-				<Grid item md={6} xs={5}>
+				<Grid item md={6} xs={12}>
 					<Button
+						className='buttonColor'
 						onClick={confirm}
 						sx={{ width: "100%", py: 1.7, mt: 2 }}
 						variant='contained'
