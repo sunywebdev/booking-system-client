@@ -4,12 +4,18 @@
 .buttonColor {
 	background-color: #252525 !important;
 }
+.activeButtonColor {
+	background-color: #ff700a !important;
+}
 .headline {
 	color: black !important;
 	background-color: #eaecee !important;
 }
+.textColor {
+	color: #ff700a !important;
+}
 .payBorder {
-	border-color: #252525 !important;
+	border-color: #ff700a !important;
 }
 .MuiBadge-badge {
 	background-color: #252525 !important;
@@ -21,4 +27,31 @@
 }
 .MuiButtonBase-root-MuiTab-root.Mui-selected {
 	border-color: #252525 !important;
+}
+
+.bgColor {
+	background: #252525 !important;
+}
+.dashboard .MuiDrawer-paper {
+	background: #252525 !important;
+}
+.dashboard .MuiDrawer-paper {
+	background: #252525 !important;
+}
+.MuiListItem-root {
+	border: 1px solid white !important;
+	color: white !important;
+}
+.MuiListItem-root:hover {
+	background-color: white !important;
+	color: black !important;
+}
+.MuiListItem-root:hover .MuiListItemIcon-root {
+	color: black !important;
+}
+.MuiListItemIcon-root {
+	color: white !important;
+}
+.importantOptions .MuiButton-root {
+	border-color: #ff700a !important;
 }

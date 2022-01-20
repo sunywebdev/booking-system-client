@@ -40,11 +40,10 @@ const ChooseVehicle = () => {
 							my: 2,
 						}}>
 						<Typography variant='body' component='div'>
-							Extra options
+							Important options
 						</Typography>
 					</Box>
 					<ExtraOptions />
-					<Grid item md={12} xs={12}></Grid>
 				</Grid>
 			</Grid>
 		</Container>

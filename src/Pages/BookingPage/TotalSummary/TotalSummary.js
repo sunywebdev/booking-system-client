@@ -1,31 +1,59 @@
 import {
+	Backdrop,
 	Box,
 	Button,
 	CardMedia,
+	CircularProgress,
 	Container,
 	Divider,
 	Grid,
 	Typography,
 } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { reactLocalStorage } from "reactjs-localstorage";
 import Step3 from "../Steps/Step3";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SendIcon from "@mui/icons-material/Send";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const TotalSummary = () => {
+	const [submitting, setSubmitting] = React.useState(false);
 	const vehicles = reactLocalStorage.getObject("vehicles");
 	const rideDetails = reactLocalStorage.getObject("rideDetails");
 	const contactDetails = reactLocalStorage.getObject("contactDetails");
-	const extraOpions = reactLocalStorage.getObject("extraOpions");
+	const gateway = reactLocalStorage.getObject("paymentDetails");
+	const extraOpions = reactLocalStorage.getObject("importantOpions");
+	const navigate = useNavigate();
+	const destination = "/confirm";
 	const confirm = () => {
-		console.log("Data", {
+		const randomNumber = Math.floor(Math.random() * 90000) + 10000;
+		const data = {
+			txn: "EL" + randomNumber,
+			bookingTime: new Date().toLocaleString(),
 			...vehicles,
 			...rideDetails,
 			...contactDetails,
 			...extraOpions,
-		});
+		};
+		setSubmitting(true);
+		axios
+			.post(`https://fierce-reef-90342.herokuapp.com/bookings`, data)
+			.then(function (response) {
+				setSubmitting(false);
+				Swal.fire({
+					icon: "success",
+					title: "Booking Request Sent Successfully",
+					showConfirmButton: false,
+					timer: 1500,
+				}).then(function () {
+					navigate(destination);
+				});
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
 	};
 
 	return (
@@ -77,10 +105,17 @@ const TotalSummary = () => {
 						</Typography>
 						<Divider sx={{ my: 1.5 }} />
 						<Typography gutterBottom variant='body' component='div'>
-							PICKUP DATE, TIME
+							Notes
 						</Typography>
 						<Typography gutterBottom variant='body2' component='div'>
-							{rideDetails.time1 || rideDetails.time2 || rideDetails.time3}
+							{contactDetails.comment || "N/A"}
+						</Typography>
+						<Divider sx={{ my: 1.5 }} />
+						<Typography gutterBottom variant='body' component='div'>
+							Payment Type
+						</Typography>
+						<Typography gutterBottom variant='body2' component='div'>
+							{gateway.gateway}
 						</Typography>
 						<Divider sx={{ my: 1.5 }} />
 					</Box>
@@ -123,37 +158,141 @@ const TotalSummary = () => {
 						<Typography gutterBottom variant='body' component='div'>
 							SERVICE TYPE
 						</Typography>
+						{rideDetails.rideType === "Hourly" && (
+							<>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.rideType}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									PICKUP LOCATION
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.picupLocation2}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									DROP-OFF LOCATION
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.dropOffLocation2}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									DURATION
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.duration2}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									PICKUP DATE, TIME
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.time2}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+							</>
+						)}
+						{rideDetails.rideType === "Distance" && (
+							<>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.rideType}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									PICKUP LOCATION
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.picupLocation1}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									DROP-OFF LOCATION
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.dropOffLocation1}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									EXTRA TIME
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.extraTime1}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									PICKUP DATE, TIME
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.time1}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+							</>
+						)}
+						{rideDetails.rideType === "Flat Rate" && (
+							<>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.rideType}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									ROUTE
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.picupLocation3}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									TRANSFER TYPE
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.transferType3}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									DURATION
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.duration3}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									PICKUP DATE, TIME
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.time1}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+							</>
+						)}
 						<Typography gutterBottom variant='body2' component='div'>
-							{rideDetails.rideType}
+							<b>Passengers</b> :{" "}
+							{extraOpions.passengers === true
+								? extraOpions.passengersCount
+								: "No"}
 						</Typography>
 						<Divider sx={{ my: 1.5 }} />
-						<Typography gutterBottom variant='body' component='div'>
-							PICKUP LOCATION
-						</Typography>
 						<Typography gutterBottom variant='body2' component='div'>
-							{rideDetails.picupLocation1 ||
-								rideDetails.picupLocation2 ||
-								rideDetails.picupLocation3}
-						</Typography>
-						<Divider sx={{ my: 1.5 }} />
-						<Typography gutterBottom variant='body' component='div'>
-							PICKUP DATE, TIME
-						</Typography>
-						<Typography gutterBottom variant='body2' component='div'>
-							{rideDetails.time1 || rideDetails.time2 || rideDetails.time3}
+							<b>Luggage</b> :{" "}
+							{extraOpions.luggage === true ? extraOpions.luggageCount : "No"}
 						</Typography>
 						<Divider sx={{ my: 1.5 }} />
 						<Typography gutterBottom variant='body2' component='div'>
-							<b>Child Seat</b> : {extraOpions.babySeat === true ? "Yes" : "No"}
+							<b>Child Seat</b> :{" "}
+							{extraOpions.babySeat === true ? extraOpions.babyCount : "No"}
 						</Typography>
 						<Divider sx={{ my: 1.5 }} />
 						<Typography gutterBottom variant='body2' component='div'>
-							<b>Car Seat</b> : {extraOpions.carSeat === true ? "Yes" : "No"}
+							<b>Car Seat</b> :{" "}
+							{extraOpions.carSeat === true ? extraOpions.carSeatCount : "No"}
 						</Typography>
 						<Divider sx={{ my: 1.5 }} />
 						<Typography gutterBottom variant='body2' component='div'>
 							<b>Wheel Chair</b> :{" "}
-							{extraOpions.wheelchair === true ? "Yes" : "No"}
+							{extraOpions.wheelchair === true
+								? extraOpions.wheelchairCount
+								: "No"}
 						</Typography>
 						<Divider sx={{ my: 1.5 }} />
 					</Box>
@@ -182,6 +321,14 @@ const TotalSummary = () => {
 					</Button>
 				</Grid>
 			</Grid>
+			<Backdrop
+				sx={{
+					color: "#fff",
+					zIndex: (theme) => theme.zIndex.drawer + 1,
+				}}
+				open={submitting}>
+				<CircularProgress color='inherit' />
+			</Backdrop>
 		</Container>
 	);
 };

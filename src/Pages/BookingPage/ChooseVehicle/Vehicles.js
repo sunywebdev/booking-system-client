@@ -8,54 +8,16 @@ import GroupIcon from "@mui/icons-material/Group";
 import LuggageIcon from "@mui/icons-material/Luggage";
 import CheckIcon from "@mui/icons-material/Check";
 import { reactLocalStorage } from "reactjs-localstorage";
+import axios from "axios";
 
-const Vehicles = ({ setData }) => {
-	const cars = [
-		{
-			carId: 1,
-			carLuggage: 5,
-			carPassenger: 5,
-			carName: "Mercedes-Benz E220",
-			carInfo:
-				"Do not worry about missing an important meeting because of road conditions, just relax in your reclining leather seat. A great choice for a business meeting or a business trip.",
-			carCost: 5.99,
-			carPhoto:
-				"http://quanticalabs.com/wp_plugins/chauffeur-booking-system/files/2017/11/image_03.jpg",
-		},
-		{
-			carId: 2,
-			carLuggage: 5,
-			carPassenger: 5,
-			carName: "BMW 5 Series Long",
-			carInfo:
-				"The mid-size luxury sedan by BMW with great V8 engine with both natural aspiration and turbocharging. A great option for corporate travel.",
-			carCost: 6.99,
-			carPhoto:
-				"http://quanticalabs.com/wp_plugins/chauffeur-booking-system/files/2017/11/image_01.jpg",
-		},
-		{
-			carId: 3,
-			carLuggage: 5,
-			carPassenger: 5,
-			carName: "Mercedes-Benz S600",
-			carInfo:
-				"The world's best-selling luxury sedan with many of the company's latest innovations, including drivetrain technologies, interior features, and safety systems that give you the peace of mind you deserve.",
-			carCost: 7.99,
-			carPhoto:
-				"http://quanticalabs.com/wp_plugins/chauffeur-booking-system/files/2017/11/image_04.jpg",
-		},
-		{
-			carId: 4,
-			carLuggage: 5,
-			carPassenger: 5,
-			carName: "Ford Tourneo",
-			carInfo:
-				"Comfortable Van for 7 passengers with plenty of leg room and a spacious trunk.",
-			carCost: 8.99,
-			carPhoto:
-				"http://quanticalabs.com/wp_plugins/chauffeur-booking-system/files/2017/11/image_11.jpg",
-		},
-	];
+const Vehicles = () => {
+	const [cars, setCars] = React.useState();
+	React.useEffect(() => {
+		axios.get(`https://fierce-reef-90342.herokuapp.com/cars`).then((res) => {
+			setCars(res.data);
+		});
+	}, [setCars]);
+
 	const data = reactLocalStorage.getObject("vehicles");
 	const [selectedId, setSelectedId] = React.useState(data?.carId || 1);
 	console.log(selectedId);
@@ -64,13 +26,21 @@ const Vehicles = ({ setData }) => {
 	const setCar = (car) => {
 		setSelectedId(car?.carId);
 		setVehicle(car);
-		reactLocalStorage.setObject("vehicles", car);
+		const data = {
+			carId: car?.carId,
+			carName: car?.carName,
+			carInfo: car?.carInfo,
+			carPhoto: car?.carPhoto,
+			carPassenger: car?.carPassenger,
+			carLuggage: car?.carLuggage,
+		};
+		reactLocalStorage.setObject("vehicles", data);
 	};
 	console.log(vehicle);
 	return (
 		<div>
-			{cars.map((car, n) => (
-				<>
+			{cars?.map((car, key) => (
+				<Box key={key}>
 					<Box
 						sx={{
 							textAlign: "left",
@@ -97,9 +67,6 @@ const Vehicles = ({ setData }) => {
 								<CardContent>
 									<Typography variant='h6'>{car?.carName}</Typography>
 									<Typography variant='body2'>{car?.carInfo}</Typography>
-									<Typography sx={{ my: 1 }} variant='h4'>
-										$ {car?.carCost}
-									</Typography>
 								</CardContent>
 							</Grid>
 							<Grid item md={3} xs={12}>
@@ -126,7 +93,7 @@ const Vehicles = ({ setData }) => {
 												<Button
 													sx={{ px: 3, py: 1.5 }}
 													variant='contained'
-													className='buttonColor'
+													className='activeButtonColor'
 													onClick={() => setCar(car)}>
 													<CheckIcon sx={{ mr: 0.7 }} /> Select
 												</Button>
@@ -153,7 +120,7 @@ const Vehicles = ({ setData }) => {
 						</Grid>
 					</Box>
 					<Divider sx={{ my: 1.5 }} />
-				</>
+				</Box>
 			))}
 		</div>
 	);

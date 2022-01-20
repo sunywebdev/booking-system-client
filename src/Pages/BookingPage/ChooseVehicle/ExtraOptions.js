@@ -2,6 +2,7 @@ import * as React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import {
 	Button,
+	ButtonGroup,
 	Divider,
 	Grid,
 	ListItemButton,
@@ -14,19 +15,49 @@ import { Link, useNavigate } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { reactLocalStorage } from "reactjs-localstorage";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 const ExtraOptions = () => {
-	const [wheelchair, setWheelchair] = React.useState(true);
+	const savedData = reactLocalStorage.getObject("importantOpions");
+	const [passengersCount, setPassengersCount] = React.useState(
+		savedData.passengersCount || 1,
+	);
+	const [passengers, setPassengers] = React.useState(
+		savedData.passengers || true,
+	);
+	const passengers1 = (event) => {
+		setPassengers(event.target.checked);
+	};
+
+	const [luggageCount, setLuggageCount] = React.useState(
+		savedData.luggageCount || 0,
+	);
+	const [luggage, setLuggage] = React.useState(savedData.luggage || false);
+	const luggage1 = (event) => {
+		setLuggage(event.target.checked);
+	};
+
+	const [wheelchairCount, setWheelchairCount] = React.useState(
+		savedData.wheelchairCount || 0,
+	);
+	const [wheelchair, setWheelchair] = React.useState(
+		savedData.wheelchair || false,
+	);
 	const wheelchair1 = (event) => {
 		setWheelchair(event.target.checked);
 	};
 
-	const [babySeat, setBabySeat] = React.useState(true);
+	const [babyCount, setBabyCount] = React.useState(savedData.babyCount || 0);
+	const [babySeat, setBabySeat] = React.useState(savedData.babySeat || false);
 	const babySeat1 = (event) => {
 		setBabySeat(event.target.checked);
 	};
 
-	const [carSeat, setCarSeat] = React.useState(true);
+	const [carSeatCount, setcarSeatCount] = React.useState(
+		savedData.carSeatCount || 0,
+	);
+	const [carSeat, setCarSeat] = React.useState(savedData.carSeat || false);
 	const carSeat1 = (event) => {
 		setCarSeat(event.target.checked);
 	};
@@ -35,158 +66,377 @@ const ExtraOptions = () => {
 	const destination = "/contactdetails";
 
 	const saveAndGo = () => {
-		const data = { wheelchair, babySeat, carSeat };
-		reactLocalStorage.setObject("extraOpions", data);
+		const data = {
+			passengers,
+			passengersCount,
+			luggage,
+			luggageCount,
+			wheelchair,
+			wheelchairCount,
+			babySeat,
+			babyCount,
+			carSeat,
+			carSeatCount,
+		};
+		reactLocalStorage.setObject("importantOpions", data);
 		navigate(destination);
 	};
 
 	return (
-		<div>
-			<ListItemButton
-				dense
-				sx={{ display: "flex", justifyContent: "space-between", my: 1 }}>
-				<Box
-					sx={{
-						display: "flex",
-						flexDirection: "column",
-						textAlign: "left",
-						width: "80%",
-					}}>
-					<Typography variant='h6'>Child Seat</Typography>
-					<Typography variant='subtitle2'>
-						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
-						voluptatibus quisquam veniam alias aut recusandae eveniet, beatae
-						facilis, nesciunt consectetur molestiae qui laudantium placeat.
-						Laudantium id error quaerat ex beatae.
-					</Typography>
-				</Box>
-				<ListItemIcon>
-					<Checkbox
-						icon={
+		<div className='importantOptions'>
+			<ListItemButton dense>
+				<Grid container spacing={2} sx={{ alignItems: "center" }}>
+					<Grid item md={8} sm={6} xs={12}>
+						<Box
+							sx={{
+								display: "flex",
+								flexDirection: "column",
+								textAlign: "left",
+							}}>
+							<Typography variant='h6'>Total Luggage</Typography>
+							<Typography variant='subtitle2'>
+								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
+								voluptatibus quisquam veniam alias aut recusandae eveniet,
+								beatae facilis, nesciunt consectetur molestiae qui laudantium
+								placeat. Laudantium id error quaerat ex beatae.
+							</Typography>
+						</Box>
+					</Grid>
+					<Grid item md={2} sm={3} xs={6}>
+						<ButtonGroup>
 							<Button
-								style={{ backgroundColor: "transparent" }}
-								sx={{
-									px: 2,
-									py: 1,
-									bgcolor: "#EAECEE",
-									color: "black",
-									fontWeight: "bold",
-									border: "1px solid",
-								}}
-								variant='contained'>
-								Select
+								aria-label='reduce'
+								onClick={() => {
+									setLuggageCount(Math.max(luggageCount - 1, 0));
+								}}>
+								<RemoveIcon fontSize='small' />
 							</Button>
-						}
-						checkedIcon={
+							<Button variant='outlined'> {luggageCount}</Button>
 							<Button
-								className='buttonColor'
-								sx={{ px: 2, py: 1 }}
-								variant='contained'>
-								<CheckIcon sx={{ mr: 0.7 }} /> Select
+								aria-label='increase'
+								onClick={() => {
+									setLuggageCount(luggageCount + 1);
+								}}>
+								<AddIcon fontSize='small' />
 							</Button>
-						}
-						checked={babySeat}
-						onChange={babySeat1}
-					/>
-				</ListItemIcon>
+						</ButtonGroup>
+					</Grid>
+					<Grid item md={2} sm={3} xs={6}>
+						<ListItemIcon>
+							<Checkbox
+								icon={
+									<Button
+										style={{ backgroundColor: "transparent" }}
+										sx={{
+											px: 2,
+											py: 1,
+											bgcolor: "#EAECEE",
+											color: "black",
+											fontWeight: "bold",
+											border: "1px solid",
+										}}
+										variant='contained'>
+										Select
+									</Button>
+								}
+								checkedIcon={
+									<Button
+										className='activeButtonColor'
+										sx={{ px: 2, py: 1 }}
+										variant='contained'>
+										<CheckIcon sx={{ mr: 0.7 }} /> Select
+									</Button>
+								}
+								checked={luggage}
+								onChange={luggage1}
+							/>
+						</ListItemIcon>
+					</Grid>
+				</Grid>
 			</ListItemButton>
 			<Divider sx={{ my: 1.5 }} />
-			<ListItemButton
-				dense
-				sx={{ display: "flex", justifyContent: "space-between", my: 1 }}>
-				<Box
-					sx={{
-						display: "flex",
-						flexDirection: "column",
-						textAlign: "left",
-						width: "80%",
-					}}>
-					<Typography variant='h6'>Wheel Chair</Typography>
-					<Typography variant='subtitle2'>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
-						deleniti porro accusantium facilis cum? Ab cum voluptatum maiores.
-						In, ratione. Soluta esse officiis culpa cum sunt quia aliquam
-						voluptatem hic!
-					</Typography>
-				</Box>
-				<ListItemIcon>
-					<Checkbox
-						icon={
+			<ListItemButton dense>
+				<Grid container spacing={2} sx={{ alignItems: "center" }}>
+					<Grid item md={8} sm={6} xs={12}>
+						<Box
+							sx={{
+								display: "flex",
+								flexDirection: "column",
+								textAlign: "left",
+							}}>
+							<Typography variant='h6'>Total Passengers</Typography>
+							<Typography variant='subtitle2'>
+								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
+								voluptatibus quisquam veniam alias aut recusandae eveniet,
+								beatae facilis, nesciunt consectetur molestiae qui laudantium
+								placeat. Laudantium id error quaerat ex beatae.
+							</Typography>
+						</Box>
+					</Grid>
+					<Grid item md={2} sm={3} xs={6}>
+						<ButtonGroup>
 							<Button
-								style={{ backgroundColor: "transparent" }}
-								sx={{
-									px: 2,
-									py: 1,
-									bgcolor: "#EAECEE",
-									color: "black",
-									fontWeight: "bold",
-									border: "1px solid",
-								}}
-								variant='contained'>
-								Select
+								aria-label='reduce'
+								onClick={() => {
+									setPassengersCount(Math.max(passengersCount - 1, 0));
+								}}>
+								<RemoveIcon fontSize='small' />
 							</Button>
-						}
-						checkedIcon={
+							<Button variant='outlined'> {passengersCount}</Button>
 							<Button
-								className='buttonColor'
-								sx={{ px: 2, py: 1 }}
-								variant='contained'>
-								<CheckIcon sx={{ mr: 0.7 }} /> Select
+								aria-label='increase'
+								onClick={() => {
+									setPassengersCount(passengersCount + 1);
+								}}>
+								<AddIcon fontSize='small' />
 							</Button>
-						}
-						checked={wheelchair}
-						onChange={wheelchair1}
-					/>
-				</ListItemIcon>
+						</ButtonGroup>
+					</Grid>
+					<Grid item md={2} sm={3} xs={6}>
+						<ListItemIcon>
+							<Checkbox
+								icon={
+									<Button
+										style={{ backgroundColor: "transparent" }}
+										sx={{
+											px: 2,
+											py: 1,
+											bgcolor: "#EAECEE",
+											color: "black",
+											fontWeight: "bold",
+											border: "1px solid",
+										}}
+										variant='contained'>
+										Select
+									</Button>
+								}
+								checkedIcon={
+									<Button
+										className='activeButtonColor'
+										sx={{ px: 2, py: 1 }}
+										variant='contained'>
+										<CheckIcon sx={{ mr: 0.7 }} /> Select
+									</Button>
+								}
+								checked={passengers}
+								onChange={passengers1}
+							/>
+						</ListItemIcon>
+					</Grid>
+				</Grid>
 			</ListItemButton>
 			<Divider sx={{ my: 1.5 }} />
-			<ListItemButton
-				dense
-				sx={{ display: "flex", justifyContent: "space-between", my: 1 }}>
-				<Box
-					sx={{
-						display: "flex",
-						flexDirection: "column",
-						textAlign: "left",
-						width: "80%",
-					}}>
-					<Typography variant='h6'>Car Seat</Typography>
-					<Typography variant='subtitle2'>
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit,
-						corrupti. Qui ducimus est maxime nam nostrum debitis nemo quod
-						provident illum quaerat illo minima iure, unde laborum nulla odit
-						voluptate.
-					</Typography>
-				</Box>
-				<ListItemIcon>
-					<Checkbox
-						icon={
+			<ListItemButton dense>
+				<Grid container spacing={2} sx={{ alignItems: "center" }}>
+					<Grid item md={8} sm={6} xs={12}>
+						<Box
+							sx={{
+								display: "flex",
+								flexDirection: "column",
+								textAlign: "left",
+							}}>
+							<Typography variant='h6'>Child Seat</Typography>
+							<Typography variant='subtitle2'>
+								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
+								voluptatibus quisquam veniam alias aut recusandae eveniet,
+								beatae facilis, nesciunt consectetur molestiae qui laudantium
+								placeat. Laudantium id error quaerat ex beatae.
+							</Typography>
+						</Box>
+					</Grid>
+					<Grid item md={2} sm={3} xs={6}>
+						<ButtonGroup>
 							<Button
-								style={{ backgroundColor: "transparent" }}
-								sx={{
-									px: 2,
-									py: 1,
-									bgcolor: "#EAECEE",
-									color: "black",
-									fontWeight: "bold",
-									border: "1px solid",
-								}}
-								variant='contained'>
-								Select
+								aria-label='reduce'
+								onClick={() => {
+									setBabyCount(Math.max(babyCount - 1, 0));
+								}}>
+								<RemoveIcon fontSize='small' />
 							</Button>
-						}
-						checkedIcon={
+							<Button variant='outlined'> {babyCount}</Button>
 							<Button
-								className='buttonColor'
-								sx={{ px: 2, py: 1 }}
-								variant='contained'>
-								<CheckIcon sx={{ mr: 0.7 }} /> Select
+								aria-label='increase'
+								onClick={() => {
+									setBabyCount(babyCount + 1);
+								}}>
+								<AddIcon fontSize='small' />
 							</Button>
-						}
-						checked={carSeat}
-						onChange={carSeat1}
-					/>
-				</ListItemIcon>
+						</ButtonGroup>
+					</Grid>
+					<Grid item md={2} sm={3} xs={6}>
+						<ListItemIcon>
+							<Checkbox
+								icon={
+									<Button
+										style={{ backgroundColor: "transparent" }}
+										sx={{
+											px: 2,
+											py: 1,
+											bgcolor: "#EAECEE",
+											color: "black",
+											fontWeight: "bold",
+											border: "1px solid",
+										}}
+										variant='contained'>
+										Select
+									</Button>
+								}
+								checkedIcon={
+									<Button
+										className='activeButtonColor'
+										sx={{ px: 2, py: 1 }}
+										variant='contained'>
+										<CheckIcon sx={{ mr: 0.7 }} /> Select
+									</Button>
+								}
+								checked={babySeat}
+								onChange={babySeat1}
+							/>
+						</ListItemIcon>
+					</Grid>
+				</Grid>
+			</ListItemButton>
+			<Divider sx={{ my: 1.5 }} />
+			<ListItemButton dense>
+				<Grid container spacing={2} sx={{ alignItems: "center" }}>
+					<Grid item md={8} sm={6} xs={12}>
+						<Box
+							sx={{
+								display: "flex",
+								flexDirection: "column",
+								textAlign: "left",
+							}}>
+							<Typography variant='h6'>Wheel Chair</Typography>
+							<Typography variant='subtitle2'>
+								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
+								voluptatibus quisquam veniam alias aut recusandae eveniet,
+								beatae facilis, nesciunt consectetur molestiae qui laudantium
+								placeat. Laudantium id error quaerat ex beatae.
+							</Typography>
+						</Box>
+					</Grid>
+					<Grid item md={2} sm={3} xs={6}>
+						<ButtonGroup>
+							<Button
+								aria-label='reduce'
+								onClick={() => {
+									setWheelchairCount(Math.max(wheelchairCount - 1, 0));
+								}}>
+								<RemoveIcon fontSize='small' />
+							</Button>
+							<Button variant='outlined'> {wheelchairCount}</Button>
+							<Button
+								aria-label='increase'
+								onClick={() => {
+									setWheelchairCount(wheelchairCount + 1);
+								}}>
+								<AddIcon fontSize='small' />
+							</Button>
+						</ButtonGroup>
+					</Grid>
+					<Grid item md={2} sm={3} xs={6}>
+						<ListItemIcon>
+							<Checkbox
+								icon={
+									<Button
+										style={{ backgroundColor: "transparent" }}
+										sx={{
+											px: 2,
+											py: 1,
+											bgcolor: "#EAECEE",
+											color: "black",
+											fontWeight: "bold",
+											border: "1px solid",
+										}}
+										variant='contained'>
+										Select
+									</Button>
+								}
+								checkedIcon={
+									<Button
+										className='activeButtonColor'
+										sx={{ px: 2, py: 1 }}
+										variant='contained'>
+										<CheckIcon sx={{ mr: 0.7 }} /> Select
+									</Button>
+								}
+								checked={wheelchair}
+								onChange={wheelchair1}
+							/>
+						</ListItemIcon>
+					</Grid>
+				</Grid>
+			</ListItemButton>
+			<Divider sx={{ my: 1.5 }} />
+			<ListItemButton dense>
+				<Grid container spacing={2} sx={{ alignItems: "center" }}>
+					<Grid item md={8} sm={6} xs={12}>
+						<Box
+							sx={{
+								display: "flex",
+								flexDirection: "column",
+								textAlign: "left",
+							}}>
+							<Typography variant='h6'>Car Seat</Typography>
+							<Typography variant='subtitle2'>
+								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
+								voluptatibus quisquam veniam alias aut recusandae eveniet,
+								beatae facilis, nesciunt consectetur molestiae qui laudantium
+								placeat. Laudantium id error quaerat ex beatae.
+							</Typography>
+						</Box>
+					</Grid>
+					<Grid item md={2} sm={3} xs={6}>
+						<ButtonGroup>
+							<Button
+								aria-label='reduce'
+								onClick={() => {
+									setcarSeatCount(Math.max(carSeatCount - 1, 0));
+								}}>
+								<RemoveIcon fontSize='small' />
+							</Button>
+							<Button variant='outlined'> {carSeatCount}</Button>
+							<Button
+								aria-label='increase'
+								onClick={() => {
+									setcarSeatCount(carSeatCount + 1);
+								}}>
+								<AddIcon fontSize='small' />
+							</Button>
+						</ButtonGroup>
+					</Grid>
+					<Grid item md={2} sm={3} xs={6}>
+						<ListItemIcon>
+							<Checkbox
+								icon={
+									<Button
+										style={{ backgroundColor: "transparent" }}
+										sx={{
+											px: 2,
+											py: 1,
+											bgcolor: "#EAECEE",
+											color: "black",
+											fontWeight: "bold",
+											border: "1px solid",
+										}}
+										variant='contained'>
+										Select
+									</Button>
+								}
+								checkedIcon={
+									<Button
+										className='activeButtonColor'
+										sx={{ px: 2, py: 1 }}
+										variant='contained'>
+										<CheckIcon sx={{ mr: 0.7 }} /> Select
+									</Button>
+								}
+								checked={carSeat}
+								onChange={carSeat1}
+							/>
+						</ListItemIcon>
+					</Grid>
+				</Grid>
 			</ListItemButton>
 			<Grid container spacing={{ md: 2, xs: 0 }}>
 				<Grid item md={6} xs={12}>

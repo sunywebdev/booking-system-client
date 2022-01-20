@@ -15,9 +15,9 @@ const PaymentMethod = () => {
 	const data = reactLocalStorage.getObject("paymentDetails");
 	const payment = [
 		{ id: 1, img: a, gateway: "Stripe" },
-		{ id: 2, img: b, gateway: "Cash" },
+		{ id: 2, img: b, gateway: "Card" },
 	];
-	const [select, setSelect] = useState(data?.id || 2);
+	const [select, setSelect] = useState(data?.id || 1);
 	const selected = (pay) => {
 		setSelect(pay?.id);
 		reactLocalStorage.setObject("paymentDetails", pay);
@@ -39,12 +39,12 @@ const PaymentMethod = () => {
 
 			<Grid container spacing={2} sx={{ justifyContent: "center" }}>
 				{payment?.map((pay) => (
-					<Grid item md={4} xs={6}>
+					<Grid item md={6} xs={6}>
 						{select === pay?.id ? (
 							<Paper
 								elevation={4}
 								onClick={() => selected(pay)}
-								sx={{ border: "5px solid" }}
+								sx={{ border: "7px solid" }}
 								className='payBorder'>
 								<CardMedia component='img' alt=' ' image={pay?.img} />
 							</Paper>
