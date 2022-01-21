@@ -20,10 +20,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
 import { CSVLink } from "react-csv";
+import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
 
 const Bookings = () => {
 	const [deleted, setDeleted] = useState(false);
 	const [bookings, setBookings] = useState([]);
+	const [done, setDone] = useState(false);
 	const [search, setSearch] = React.useState("");
 	const [newList, setNewList] = React.useState([]);
 	const handleChange = (event) => {
@@ -37,7 +39,7 @@ const Bookings = () => {
 				booking.txn.toLowerCase().includes(search.toLowerCase()) ||
 				booking.phone.toLowerCase().includes(search.toLowerCase()),
 		);
-		setNewList(searchs);
+		setNewList(searchs.reverse());
 	}, [bookings, search]);
 
 	useEffect(() => {
@@ -47,7 +49,7 @@ const Bookings = () => {
 				setBookings(data.reverse());
 				setNewList(data.reverse());
 			});
-	}, [deleted]);
+	}, [deleted, done]);
 	const handleDelete = (id) => {
 		Swal.fire({
 			title: "Are you sure?",
@@ -71,6 +73,38 @@ const Bookings = () => {
 			}
 		});
 	};
+
+	const handleDone = (id) => {
+		Swal.fire({
+			title: "Are you sure?",
+			text: "You won't be able to revert this!",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Yes, Mark as Completed!",
+		}).then((result) => {
+			if (result.isConfirmed) {
+				axios
+					.put(
+						`https://fierce-reef-90342.herokuapp.com/bookingsCompleted/${id}`,
+						{ position: "Completed" },
+					)
+					.then(function (response) {
+						Swal.fire(
+							"Completed!",
+							"That booking has been marked as Completed.",
+							"success",
+						);
+						setDone(true);
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
+			}
+		});
+	};
+
 	let count = 1;
 	const headers = [
 		{ label: "First Name", key: "firstName" },
@@ -175,13 +209,28 @@ const Bookings = () => {
 										sx={{
 											"&:last-child td, &:last-child th": { border: 0 },
 										}}>
-										<TableCell align='left'>{count++}</TableCell>
-										<TableCell align='left'>
-											{booking?.firstName + " " + booking?.lastName}
-										</TableCell>
+										{booking?.position === "Completed" ? (
+											<TableCell
+												align='left'
+												sx={{ bgcolor: "#252525", color: "white" }}>
+												{count++}
+											</TableCell>
+										) : (
+											<TableCell align='left'>{count++}</TableCell>
+										)}
+										{booking?.position === "Completed" ? (
+											<TableCell
+												align='left'
+												sx={{ bgcolor: "#252525", color: "white" }}>
+												{booking?.firstName + " " + booking?.lastName}
+											</TableCell>
+										) : (
+											<TableCell align='left'>
+												{booking?.firstName + " " + booking?.lastName}
+											</TableCell>
+										)}
 										<TableCell align='left'>{booking?.txn}</TableCell>
 										<TableCell align='left'>{booking?.bookingTime}</TableCell>
-
 										<TableCell align='center'>
 											<Link
 												to={`/dashboard/bookings/${booking?._id}`}
@@ -213,6 +262,23 @@ const Bookings = () => {
 												variant='contained'>
 												<DeleteIcon />
 											</Button>
+											{booking?.position === "Completed" ? (
+												<></>
+											) : (
+												<Button
+													className='buttonColor'
+													onClick={() => handleDone(booking?._id)}
+													sx={{
+														fontWeight: "bold",
+														border: "2px solid",
+														backgroundColor: "transparent",
+														borderRadius: "25px",
+														m: 0.5,
+													}}
+													variant='contained'>
+													<DoneOutlineIcon />
+												</Button>
+											)}
 										</TableCell>
 									</TableRow>
 								))}
