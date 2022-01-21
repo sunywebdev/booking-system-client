@@ -13,7 +13,6 @@ import Paper from "@mui/material/Paper";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 
@@ -96,22 +95,7 @@ const Cars = () => {
 										<TableCell align='left'>{car?.carLuggage}</TableCell>
 										<TableCell align='left'>{car?.carInfo}</TableCell>
 										<TableCell align='center'>
-											<Link
-												to={`/dashboard/bookings/${car?._id}`}
-												style={{ textDecoration: "none" }}>
-												<Button
-													className='buttonColor'
-													sx={{
-														fontWeight: "bold",
-														border: "2px solid",
-														backgroundColor: "transparent",
-														borderRadius: "25px",
-														m: 0.5,
-													}}
-													variant='contained'>
-													<RemoveRedEyeIcon />
-												</Button>
-											</Link>
+											
 
 											<Button
 												className='buttonColor'
