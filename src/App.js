@@ -14,7 +14,6 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import Summary from "./Pages/Dashboard/Summary/Summary";
 import Login from "./Pages/Login/Login";
 import ResetPass from "./Pages/ResetPass/ResetPass";
-import SignUp from "./Pages/SignUp/SignUp";
 
 function App() {
 	return (
@@ -24,7 +23,6 @@ function App() {
 					<Routes>
 						<Route path='/' element={<RideDetails />}></Route>
 						<Route path='/login' element={<Login />}></Route>
-						<Route path='/signup' element={<SignUp />}></Route>
 						<Route path='/resetpassword' element={<ResetPass />}></Route>
 						<Route path='/choosevehicle' element={<ChooseVehicle />}></Route>
 						<Route path='/contactdetails' element={<Contact />}></Route>

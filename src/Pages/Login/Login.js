@@ -14,14 +14,12 @@ import useAuth from "../../context/useAuth";
 import { Backdrop, CircularProgress } from "@mui/material";
 
 export default function Login() {
-	const { signInUsingGoogle, signInWithEmailPassword, auth, error } = useAuth();
+	const { signInWithEmailPassword, auth, error } = useAuth();
 	const [load, setLoad] = React.useState();
 	const location = useLocation();
 	const navigate = useNavigate();
 	console.log(error);
-	const handleGoogleLogin = () => {
-		signInUsingGoogle(navigate, location);
-	};
+
 	const { register, handleSubmit } = useForm();
 	const onSubmit = (data) => {
 		setLoad(true);
@@ -44,7 +42,7 @@ export default function Login() {
 					flexDirection: "column",
 					alignItems: "center",
 				}}>
-				<Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+				<Avatar sx={{ m: 1 }} className='buttonColor'>
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component='h1' variant='h5'>
@@ -75,7 +73,7 @@ export default function Login() {
 					/>
 
 					<Grid item xs>
-						<Link to='/resetpass' variant='body2'>
+						<Link to='/resetpassword' variant='body2'>
 							{"Forgot password?"}
 						</Link>
 					</Grid>
@@ -83,36 +81,12 @@ export default function Login() {
 						type='submit'
 						fullWidth
 						variant='contained'
+						className='buttonColor'
 						sx={{
-							mt: 3,
-							mb: 2,
-							backgroundColor: "#02598b",
-							"&.MuiButtonBase-root:hover": {
-								bgcolor: "#02598b",
-							},
+							my: 2,
 						}}>
 						Sign In
 					</Button>
-					<Button
-						onClick={handleGoogleLogin}
-						fullWidth
-						variant='contained'
-						sx={{
-							mb: 2,
-							backgroundColor: "#02598b",
-							"&.MuiButtonBase-root:hover": {
-								bgcolor: "#02598b",
-							},
-						}}>
-						Sign In With Google
-					</Button>
-					<Grid container justifyContent='center'>
-						<Grid item>
-							<Link to='/signup' variant='body2'>
-								{"Don't have an account? Sign Up"}
-							</Link>
-						</Grid>
-					</Grid>
 				</form>
 			</Box>
 			<Backdrop

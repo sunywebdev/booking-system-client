@@ -34,7 +34,7 @@ export default function ResetPass() {
 					flexDirection: "column",
 					alignItems: "center",
 				}}>
-				<Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+				<Avatar sx={{ m: 1 }} className='buttonColor'>
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component='h1' variant='h5'>
@@ -55,22 +55,18 @@ export default function ResetPass() {
 					/>
 					<Button
 						type='submit'
+						className='buttonColor'
 						fullWidth
 						variant='contained'
 						sx={{
-							mt: 3,
-							mb: 2,
-							backgroundColor: "#02598b",
-							"&.MuiButtonBase-root:hover": {
-								bgcolor: "#02598b",
-							},
+							my: 2,
 						}}>
 						Reset Password
 					</Button>
 					<Grid container justifyContent='center'>
 						<Grid item>
-							<Link to='/signup' variant='body2'>
-								{"Don't have an account? Sign Up"}
+							<Link to='/login' variant='body2'>
+								{"Remember Password? Login Now"}
 							</Link>
 						</Grid>
 					</Grid>

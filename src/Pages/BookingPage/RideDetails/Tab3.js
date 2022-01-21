@@ -87,9 +87,6 @@ export default function Tab3() {
 									<MenuItem value=''>
 										<em>Select Type</em>
 									</MenuItem>
-									<MenuItem value={"Cauffeur Services"}>
-										Cauffeur Services
-									</MenuItem>
 									<MenuItem value={"Airport Pick-ups and drop-off service"}>
 										Airport Pick-ups and drop-off service
 									</MenuItem>

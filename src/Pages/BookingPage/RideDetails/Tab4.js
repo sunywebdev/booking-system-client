@@ -92,6 +92,7 @@ export default function Tab4() {
 									<MenuItem value={"Wedding"}>Wedding</MenuItem>
 									<MenuItem value={"Funeral"}>Funeral</MenuItem>
 									<MenuItem value={"Cruise"}>Cruise</MenuItem>
+									<MenuItem value={"Prom"}>Prom</MenuItem>
 								</Select>
 							</FormControl>
 						</Grid>
