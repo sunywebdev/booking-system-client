@@ -166,6 +166,7 @@ const Bookings = () => {
 						}}
 						variant='contained'>
 						<CSVLink
+							filename={"bookings.csv"}
 							data={bookings}
 							headers={headers}
 							className='buttonColor'
