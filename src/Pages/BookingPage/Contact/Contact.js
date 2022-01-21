@@ -4,8 +4,14 @@ import React from "react";
 import Step2 from "../Steps/Step2";
 import Summary from "../Summary/Summary";
 import ContactForm from "./ContactForm";
+import a from "./2.jpg";
+import b from "./3.jpg";
 
 const Contact = () => {
+	const payment = [
+		{ id: 1, img: a, gateway: "Stripe" },
+		{ id: 2, img: b, gateway: "Card" },
+	];
 	return (
 		<Container>
 			<Box sx={{ my: 2.5 }}>
@@ -16,7 +22,7 @@ const Contact = () => {
 					<Summary />
 				</Grid>
 				<Grid item md={8} xs={12}>
-					<ContactForm />
+					<ContactForm payment={payment} />
 				</Grid>
 			</Grid>
 		</Container>

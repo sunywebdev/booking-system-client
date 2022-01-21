@@ -7,17 +7,12 @@ import {
 	Typography,
 } from "@mui/material";
 import { useState } from "react";
-import a from "./2.jpg";
-import b from "./3.jpg";
 import { reactLocalStorage } from "reactjs-localstorage";
 
-const PaymentMethod = () => {
+const PaymentMethod = ({ payment }) => {
 	const data = reactLocalStorage.getObject("paymentDetails");
-	const payment = [
-		{ id: 1, img: a, gateway: "Stripe" },
-		{ id: 2, img: b, gateway: "Card" },
-	];
-	const [select, setSelect] = useState(data?.id || 1);
+
+	const [select, setSelect] = useState(data?.id || 2);
 	const selected = (pay) => {
 		setSelect(pay?.id);
 		reactLocalStorage.setObject("paymentDetails", pay);

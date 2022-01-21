@@ -86,6 +86,30 @@ const Booking = () => {
 						</Box>
 					</Grid>
 					<Grid item md={4} xs={12}>
+						<Box sx={{ textAlign: "left", bgcolor: "#F6F6F6", p: 1.5, mb: 2 }}>
+							<Typography
+								gutterBottom
+								variant='h5'
+								component='div'
+								sx={{ mb: 2 }}>
+								Booking Info
+							</Typography>
+
+							<Typography gutterBottom variant='body' component='div'>
+								Booking Time
+							</Typography>
+							<Typography gutterBottom variant='body2' component='div'>
+								{data?.bookingTime}
+							</Typography>
+							<Divider sx={{ my: 1.5 }} />
+							<Typography gutterBottom variant='body' component='div'>
+								TXN
+							</Typography>
+							<Typography gutterBottom variant='body2' component='div'>
+								{data?.txn}
+							</Typography>
+							<Divider sx={{ my: 1.5 }} />
+						</Box>
 						<Box sx={{ textAlign: "left", bgcolor: "#F6F6F6", p: 1.5 }}>
 							<Typography
 								gutterBottom
@@ -200,16 +224,10 @@ const Booking = () => {
 									<Typography gutterBottom variant='body2' component='div'>
 										{data?.rideType}
 									</Typography>
+
 									<Divider sx={{ my: 1.5 }} />
 									<Typography gutterBottom variant='body' component='div'>
-										ROUTE
-									</Typography>
-									<Typography gutterBottom variant='body2' component='div'>
-										{data?.picupLocation3}
-									</Typography>
-									<Divider sx={{ my: 1.5 }} />
-									<Typography gutterBottom variant='body' component='div'>
-										TRANSFER TYPE
+										SERVICE TYPE
 									</Typography>
 									<Typography gutterBottom variant='body2' component='div'>
 										{data?.transferType3}
@@ -226,7 +244,37 @@ const Booking = () => {
 										PICKUP DATE, TIME
 									</Typography>
 									<Typography gutterBottom variant='body2' component='div'>
-										{data?.time1}
+										{data?.time3}
+									</Typography>
+									<Divider sx={{ my: 1.5 }} />
+								</>
+							)}
+							{data?.rideType === "Chauffeur Services" && (
+								<>
+									<Typography gutterBottom variant='body2' component='div'>
+										{data?.rideType}
+									</Typography>
+
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body' component='div'>
+										SERVICE TYPE
+									</Typography>
+									<Typography gutterBottom variant='body2' component='div'>
+										{data?.transferType4}
+									</Typography>
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body' component='div'>
+										DURATION
+									</Typography>
+									<Typography gutterBottom variant='body2' component='div'>
+										{data?.duration4}
+									</Typography>
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body' component='div'>
+										PICKUP DATE, TIME
+									</Typography>
+									<Typography gutterBottom variant='body2' component='div'>
+										{data?.time4}
 									</Typography>
 									<Divider sx={{ my: 1.5 }} />
 								</>

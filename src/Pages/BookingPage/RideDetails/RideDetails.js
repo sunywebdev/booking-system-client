@@ -13,6 +13,7 @@ import Tab2 from "./Tab2";
 import Tab3 from "./Tab3";
 import { reactLocalStorage } from "reactjs-localstorage";
 import Step0 from "../Steps/Step0";
+import Tab4 from "./Tab4";
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -88,6 +89,7 @@ export default function RideDetails() {
 								<Tab label='DISTANCE' {...a11yProps(0)} />
 								<Tab label='HOURLY' {...a11yProps(1)} />
 								<Tab label='FLAT RATE' {...a11yProps(2)} />
+								<Tab label='CHAUFFEUR SERVICES' {...a11yProps(3)} />
 							</Tabs>
 						</AppBar>
 						<SwipeableViews
@@ -102,6 +104,9 @@ export default function RideDetails() {
 							</TabPanel>
 							<TabPanel value={value} index={2} dir={theme.direction}>
 								<Tab3 />
+							</TabPanel>
+							<TabPanel value={value} index={3} dir={theme.direction}>
+								<Tab4 />
 							</TabPanel>
 						</SwipeableViews>
 					</Box>

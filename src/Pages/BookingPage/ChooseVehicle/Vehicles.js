@@ -8,15 +8,15 @@ import GroupIcon from "@mui/icons-material/Group";
 import LuggageIcon from "@mui/icons-material/Luggage";
 import CheckIcon from "@mui/icons-material/Check";
 import { reactLocalStorage } from "reactjs-localstorage";
-import axios from "axios";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const Vehicles = () => {
 	const [cars, setCars] = React.useState();
 	React.useEffect(() => {
-		axios.get(`https://fierce-reef-90342.herokuapp.com/cars`).then((res) => {
-			setCars(res.data);
-		});
-	}, [setCars]);
+		fetch(`https://fierce-reef-90342.herokuapp.com/cars`)
+			.then((res) => res.json())
+			.then((data) => setCars(data.reverse()));
+	}, []);
 
 	const data = reactLocalStorage.getObject("vehicles");
 	const [selectedId, setSelectedId] = React.useState(data?.carId || 1);
@@ -122,6 +122,7 @@ const Vehicles = () => {
 					<Divider sx={{ my: 1.5 }} />
 				</Box>
 			))}
+			{!cars && <BeatLoader size={10} />}
 		</div>
 	);
 };

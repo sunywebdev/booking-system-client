@@ -115,7 +115,7 @@ const TotalSummary = () => {
 							Payment Type
 						</Typography>
 						<Typography gutterBottom variant='body2' component='div'>
-							{gateway.gateway}
+							{gateway.gateway || contactDetails.gateway}
 						</Typography>
 						<Divider sx={{ my: 1.5 }} />
 					</Box>
@@ -235,16 +235,10 @@ const TotalSummary = () => {
 								<Typography gutterBottom variant='body2' component='div'>
 									{rideDetails.rideType}
 								</Typography>
+
 								<Divider sx={{ my: 1.5 }} />
 								<Typography gutterBottom variant='body' component='div'>
-									ROUTE
-								</Typography>
-								<Typography gutterBottom variant='body2' component='div'>
-									{rideDetails.picupLocation3}
-								</Typography>
-								<Divider sx={{ my: 1.5 }} />
-								<Typography gutterBottom variant='body' component='div'>
-									TRANSFER TYPE
+									SERVICE TYPE
 								</Typography>
 								<Typography gutterBottom variant='body2' component='div'>
 									{rideDetails.transferType3}
@@ -261,7 +255,37 @@ const TotalSummary = () => {
 									PICKUP DATE, TIME
 								</Typography>
 								<Typography gutterBottom variant='body2' component='div'>
-									{rideDetails.time1}
+									{rideDetails.time3}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+							</>
+						)}
+						{rideDetails.rideType === "Chauffeur Services" && (
+							<>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.rideType}
+								</Typography>
+
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									SERVICE TYPE
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.transferType4}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									DURATION
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.duration4}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									PICKUP DATE, TIME
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{rideDetails.time4}
 								</Typography>
 								<Divider sx={{ my: 1.5 }} />
 							</>

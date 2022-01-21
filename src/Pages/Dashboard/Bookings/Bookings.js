@@ -16,6 +16,7 @@ import Swal from "sweetalert2";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const Bookings = () => {
 	const [deleted, setDeleted] = useState(false);
@@ -67,6 +68,8 @@ const Bookings = () => {
 							<TableRow>
 								<TableCell align='left'>No</TableCell>
 								<TableCell align='left'>Name</TableCell>
+								<TableCell align='left'>TXN</TableCell>
+								<TableCell align='left'>Booking Time</TableCell>
 								<TableCell align='center'>Action</TableCell>
 							</TableRow>
 						</TableHead>
@@ -82,6 +85,9 @@ const Bookings = () => {
 										<TableCell align='left'>
 											{booking?.firstName + " " + booking?.lastName}
 										</TableCell>
+										<TableCell align='left'>{booking?.txn}</TableCell>
+										<TableCell align='left'>{booking?.bookingTime}</TableCell>
+
 										<TableCell align='center'>
 											<Link
 												to={`/dashboard/bookings/${booking?._id}`}
@@ -123,12 +129,15 @@ const Bookings = () => {
 									<TableCell align='left'>N/A</TableCell>
 									<TableCell align='left'>N/A</TableCell>
 									<TableCell align='left'>N/A</TableCell>
+									<TableCell align='left'>N/A</TableCell>
+									<TableCell align='left'>N/A</TableCell>
 								</TableRow>
 							</TableHead>
 						)}
 					</Table>
 				</Paper>
 			</Grid>
+			{!bookings && <BeatLoader size={10} />}
 		</Container>
 	);
 };

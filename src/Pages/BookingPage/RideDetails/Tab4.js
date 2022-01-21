@@ -18,7 +18,7 @@ import { useForm } from "react-hook-form";
 import { reactLocalStorage } from "reactjs-localstorage";
 import { useNavigate } from "react-router-dom";
 
-export default function Tab3() {
+export default function Tab4() {
 	const data = reactLocalStorage.getObject("rideDetails");
 	const [dateTime, setDateTime] = React.useState(new Date(data?.time3) || "");
 
@@ -40,11 +40,11 @@ export default function Tab3() {
 	const destination = "/choosevehicle";
 	const onSubmit = () => {
 		const data = {
-			time3: dateTime,
-			transferType3: type,
-			duration3: duration,
-			rideType: "Flat Rate",
-			tab: 2,
+			time4: dateTime,
+			transferType4: type,
+			duration4: duration,
+			rideType: "Chauffeur Services",
+			tab: 3,
 		};
 		reactLocalStorage.setObject("rideDetails", data);
 		navigate(destination);
@@ -87,21 +87,11 @@ export default function Tab3() {
 									<MenuItem value=''>
 										<em>Select Type</em>
 									</MenuItem>
-									<MenuItem value={"Cauffeur Services"}>
-										Cauffeur Services
-									</MenuItem>
-									<MenuItem value={"Airport Pick-ups and drop-off service"}>
-										Airport Pick-ups and drop-off service
-									</MenuItem>
-									<MenuItem value={"Wheel accessible"}>
-										Wheel accessible
-									</MenuItem>
-									<MenuItem value={"Sightseeing Services"}>
-										Sightseeing Services
-									</MenuItem>
-									<MenuItem value={"Express Parcel Delivery"}>
-										Express Parcel Delivery
-									</MenuItem>
+									<MenuItem value={"Corporate"}>Corporate</MenuItem>
+									<MenuItem value={"Driver by Day"}>Driver by Day</MenuItem>
+									<MenuItem value={"Wedding"}>Wedding</MenuItem>
+									<MenuItem value={"Funeral"}>Funeral</MenuItem>
+									<MenuItem value={"Cruise"}>Cruise</MenuItem>
 								</Select>
 							</FormControl>
 						</Grid>

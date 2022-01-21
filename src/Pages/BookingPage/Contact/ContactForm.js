@@ -8,10 +8,9 @@ import { reactLocalStorage } from "reactjs-localstorage";
 import { Link, useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-const ContactForm = () => {
+const ContactForm = ({ payment }) => {
 	const data = reactLocalStorage.getObject("contactDetails");
 	const gateway = reactLocalStorage.getObject("paymentDetails");
-	console.log("f", gateway);
 	const { register, handleSubmit, reset } = useForm({
 		defaultValues: {
 			firstName: "",
@@ -30,7 +29,7 @@ const ContactForm = () => {
 			userEmail,
 			phone,
 			comment,
-			gateway: gateway.gateway,
+			gateway: gateway?.gateway || payment[1].gateway,
 		};
 		reactLocalStorage.setObject("contactDetails", data);
 		navigate(destination);
@@ -109,7 +108,7 @@ const ContactForm = () => {
 								/>
 							</Grid>
 							<Grid item md={12} xs={12}>
-								<PaymentMethod />
+								<PaymentMethod payment={payment} />
 							</Grid>
 							<Grid item md={12} xs={12}>
 								<Grid container spacing={{ md: 2, xs: 0 }}>
