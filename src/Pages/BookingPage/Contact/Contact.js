@@ -4,8 +4,6 @@ import React from "react";
 import Step2 from "../Steps/Step2";
 import Summary from "../Summary/Summary";
 import ContactForm from "./ContactForm";
-import a from "./2.jpg";
-import b from "./3.jpg";
 
 const Contact = () => {
 
