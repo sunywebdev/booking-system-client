@@ -30,7 +30,9 @@ const Vehicles = () => {
 			carId: car?.carId,
 			carName: car?.carName,
 			carInfo: car?.carInfo,
-			carPhoto: car?.carPhoto,
+			carPhoto1: car?.carPhoto1,
+			carPhoto2: car?.carPhoto2,
+			carPhoto3: car?.carPhoto3,
 			carPassenger: car?.carPassenger,
 			carLuggage: car?.carLuggage,
 		};
@@ -47,12 +49,32 @@ const Vehicles = () => {
 						}}>
 						<Grid container spacing={2} sx={{ alignItems: "center" }}>
 							<Grid item md={4} xs={12}>
-								<CardMedia
-									sx={{ width: "100%" }}
-									component='img'
-									alt=''
-									image={car?.carPhoto}
-								/>
+								<Grid container spacing={2} sx={{ alignItems: "center" }}>
+									<Grid item md={12} xs={12}>
+										<CardMedia
+											sx={{ width: "100%" }}
+											component='img'
+											alt=''
+											image={car?.carPhoto1}
+										/>
+									</Grid>
+									<Grid item md={6} xs={6}>
+										<CardMedia
+											sx={{ width: "100%" }}
+											component='img'
+											alt=''
+											image={car?.carPhoto2}
+										/>
+									</Grid>
+									<Grid item md={6} xs={6}>
+										<CardMedia
+											sx={{ width: "100%" }}
+											component='img'
+											alt=''
+											image={car?.carPhoto3}
+										/>
+									</Grid>
+								</Grid>
 							</Grid>
 							<Grid
 								item
@@ -122,7 +144,7 @@ const Vehicles = () => {
 					<Divider sx={{ my: 1.5 }} />
 				</Box>
 			))}
-			{!cars && <BeatLoader size={10} />}
+			<Box>{!cars && <BeatLoader size={10} />}</Box>
 		</div>
 	);
 };

@@ -76,13 +76,6 @@ const Booking = () => {
 								{data?.comment || "N/A"}
 							</Typography>
 							<Divider sx={{ my: 1.5 }} />
-							<Typography gutterBottom variant='body' component='div'>
-								Payment Type
-							</Typography>
-							<Typography gutterBottom variant='body2' component='div'>
-								{data?.gateway}
-							</Typography>
-							<Divider sx={{ my: 1.5 }} />
 						</Box>
 					</Grid>
 					<Grid item md={4} xs={12}>
@@ -119,12 +112,32 @@ const Booking = () => {
 								Vehicle Info
 							</Typography>
 							<Divider sx={{ my: 1.5 }} />
-							<CardMedia
-								sx={{ width: "100%" }}
-								component='img'
-								image={data?.carPhoto}
-								alt=''
-							/>
+							<Grid container spacing={2} sx={{ alignItems: "center" }}>
+								<Grid item md={12} xs={12}>
+									<CardMedia
+										sx={{ width: "100%" }}
+										component='img'
+										alt=''
+										image={data?.carPhoto1}
+									/>
+								</Grid>
+								<Grid item md={6} xs={6}>
+									<CardMedia
+										sx={{ width: "100%" }}
+										component='img'
+										alt=''
+										image={data?.carPhoto2}
+									/>
+								</Grid>
+								<Grid item md={6} xs={6}>
+									<CardMedia
+										sx={{ width: "100%" }}
+										component='img'
+										alt=''
+										image={data?.carPhoto3}
+									/>
+								</Grid>
+							</Grid>
 							<Divider sx={{ my: 1.5 }} />
 							<Typography gutterBottom variant='body' component='div'>
 								Vehicle

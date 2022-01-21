@@ -18,7 +18,9 @@ import styled from "@emotion/styled";
 
 const AddCar = () => {
 	const [submitting, setSubmitting] = useState(false);
+	const [imageLink1, setImageLink1] = useState(null);
 	const [imageLink2, setImageLink2] = useState(null);
+	const [imageLink3, setImageLink3] = useState(null);
 	const { register, handleSubmit, reset } = useForm();
 
 	const onSubmit = ({ carName, carInfo, carLuggage, carPassenger }) => {
@@ -28,7 +30,9 @@ const AddCar = () => {
 			carInfo,
 			carLuggage,
 			carPassenger,
-			carPhoto: imageLink2,
+			carPhoto1: imageLink1,
+			carPhoto2: imageLink2,
+			carPhoto3: imageLink3,
 		};
 		setSubmitting(true);
 		axios
@@ -49,13 +53,32 @@ const AddCar = () => {
 			});
 	};
 
-	const [loading, setLoading] = useState(false);
-	const uploadImage = async (e) => {
+	const [loading1, setLoading1] = useState(false);
+	const uploadImage1 = async (e) => {
 		const files = e.target.files;
 		const data = new FormData();
 		data.append("file", files[0]);
 		data.append("upload_preset", "DBC-Comment");
-		setLoading(true);
+		setLoading1(true);
+		const res = await fetch(
+			"https://api.cloudinary.com/v1_1/dqdug0ows/image/upload",
+			{
+				method: "POST",
+				body: data,
+			},
+		);
+		const file = await res.json();
+		setImageLink1(file.secure_url);
+		setLoading1(false);
+	};
+
+	const [loading2, setLoading2] = useState(false);
+	const uploadImage2 = async (e) => {
+		const files = e.target.files;
+		const data = new FormData();
+		data.append("file", files[0]);
+		data.append("upload_preset", "DBC-Comment");
+		setLoading2(true);
 		const res = await fetch(
 			"https://api.cloudinary.com/v1_1/dqdug0ows/image/upload",
 			{
@@ -65,8 +88,28 @@ const AddCar = () => {
 		);
 		const file = await res.json();
 		setImageLink2(file.secure_url);
-		setLoading(false);
+		setLoading2(false);
 	};
+
+	const [loading3, setLoading3] = useState(false);
+	const uploadImage3 = async (e) => {
+		const files = e.target.files;
+		const data = new FormData();
+		data.append("file", files[0]);
+		data.append("upload_preset", "DBC-Comment");
+		setLoading3(true);
+		const res = await fetch(
+			"https://api.cloudinary.com/v1_1/dqdug0ows/image/upload",
+			{
+				method: "POST",
+				body: data,
+			},
+		);
+		const file = await res.json();
+		setImageLink3(file.secure_url);
+		setLoading3(false);
+	};
+
 	const Input = styled("input")({
 		display: "none",
 	});
@@ -90,54 +133,158 @@ const AddCar = () => {
 				<Grid container spacing={2}>
 					<Grid item md={7} xs={12} sx={{ mx: "auto" }}>
 						<form onSubmit={handleSubmit(onSubmit)}>
-							<Box
-								display='flex'
-								flexDirection='column'
-								alignItems='center'
-								sx={{ mt: 3, mb: 1, mx: "auto" }}>
-								<label
-									className='bgColor'
-									htmlFor='icon-button-file'
-									style={{
-										display: "flex",
-										alignItems: "center",
-										justifyContent: "center",
-										margin: "0 9px",
-										borderRadius: 5,
-									}}>
-									<Input
-										accept='image/*'
-										id='icon-button-file'
-										type='file'
-										onChange={uploadImage}
-									/>
-									<Typography
-										sx={{ m: 2, color: "white" }}
-										variant='h6'
-										component='div'
-										gutterBottom>
-										Upload Car Photo*
-									</Typography>
-									<IconButton
-										sx={{ color: "white" }}
-										aria-label='upload picture'
-										component='span'>
-										<DirectionsCarIcon
-											fontSize='large'
-											sx={{ fontWeight: "bold" }}
-										/>
-									</IconButton>
-								</label>
+							<Grid container spacing={2}>
+								<Grid item md={6} xs={12} sx={{ mx: "auto" }}>
+									<Box
+										display='flex'
+										flexDirection='column'
+										alignItems='center'
+										sx={{ mt: 3, mb: 1, mx: "auto" }}>
+										<label
+											className='bgColor'
+											htmlFor='icon-button-file1'
+											style={{
+												display: "flex",
+												alignItems: "center",
+												justifyContent: "center",
+												margin: "0 9px",
+												borderRadius: 5,
+											}}>
+											<Input
+												accept='image/*'
+												id='icon-button-file1'
+												type='file'
+												onChange={uploadImage1}
+											/>
+											<Typography
+												sx={{ m: 2, color: "white" }}
+												variant='h6'
+												component='div'
+												gutterBottom>
+												Upload Car Photo 1*
+											</Typography>
+											<IconButton
+												sx={{ color: "white" }}
+												aria-label='upload picture'
+												component='span'>
+												<DirectionsCarIcon
+													fontSize='large'
+													sx={{ fontWeight: "bold" }}
+												/>
+											</IconButton>
+										</label>
 
-								{loading ? (
-									<Box sx={{ my: 2 }}>
-										<CircularProgress className='textColor' />
+										{loading1 ? (
+											<Box sx={{ my: 2 }}>
+												<CircularProgress className='textColor' />
+											</Box>
+										) : (
+											<img src={imageLink1} style={{ width: "300px" }} alt='' />
+										)}
 									</Box>
-								) : (
-									<img src={imageLink2} style={{ width: "300px" }} alt='' />
-								)}
-							</Box>
-							{imageLink2 && (
+								</Grid>
+								<Grid item md={6} xs={12} sx={{ mx: "auto" }}>
+									{" "}
+									<Box
+										display='flex'
+										flexDirection='column'
+										alignItems='center'
+										sx={{ mt: 3, mb: 1, mx: "auto" }}>
+										<label
+											className='bgColor'
+											htmlFor='icon-button-file2'
+											style={{
+												display: "flex",
+												alignItems: "center",
+												justifyContent: "center",
+												margin: "0 9px",
+												borderRadius: 5,
+											}}>
+											<Input
+												accept='image/*'
+												id='icon-button-file2'
+												type='file'
+												onChange={uploadImage2}
+											/>
+											<Typography
+												sx={{ m: 2, color: "white" }}
+												variant='h6'
+												component='div'
+												gutterBottom>
+												Upload Car Photo 2*
+											</Typography>
+											<IconButton
+												sx={{ color: "white" }}
+												aria-label='upload picture'
+												component='span'>
+												<DirectionsCarIcon
+													fontSize='large'
+													sx={{ fontWeight: "bold" }}
+												/>
+											</IconButton>
+										</label>
+
+										{loading2 ? (
+											<Box sx={{ my: 2 }}>
+												<CircularProgress className='textColor' />
+											</Box>
+										) : (
+											<img src={imageLink2} style={{ width: "300px" }} alt='' />
+										)}
+									</Box>
+								</Grid>
+								<Grid item md={6} xs={12} sx={{ mx: "auto" }}>
+									<Box
+										display='flex'
+										flexDirection='column'
+										alignItems='center'
+										sx={{ mt: 3, mb: 1, mx: "auto" }}>
+										<label
+											className='bgColor'
+											htmlFor='icon-button-file3'
+											style={{
+												display: "flex",
+												alignItems: "center",
+												justifyContent: "center",
+												margin: "0 9px",
+												borderRadius: 5,
+											}}>
+											<Input
+												accept='image/*'
+												id='icon-button-file3'
+												type='file'
+												onChange={uploadImage3}
+											/>
+											<Typography
+												sx={{ m: 2, color: "white" }}
+												variant='h6'
+												component='div'
+												gutterBottom>
+												Upload Car Photo 3*
+											</Typography>
+											<IconButton
+												sx={{ color: "white" }}
+												aria-label='upload picture'
+												component='span'>
+												<DirectionsCarIcon
+													fontSize='large'
+													sx={{ fontWeight: "bold" }}
+												/>
+											</IconButton>
+										</label>
+
+										{loading3 ? (
+											<Box sx={{ my: 2 }}>
+												<CircularProgress className='textColor' />
+											</Box>
+										) : (
+											<img src={imageLink3} style={{ width: "300px" }} alt='' />
+										)}
+									</Box>
+								</Grid>
+							</Grid>
+
+							{imageLink1 && imageLink2 && imageLink3 && (
 								<>
 									<TextField
 										required

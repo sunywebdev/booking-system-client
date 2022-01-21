@@ -3,14 +3,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import SendIcon from "@mui/icons-material/Send";
 import { Box } from "@mui/system";
-import PaymentMethod from "./PaymentMethod";
 import { reactLocalStorage } from "reactjs-localstorage";
 import { Link, useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-const ContactForm = ({ payment }) => {
+const ContactForm = () => {
 	const data = reactLocalStorage.getObject("contactDetails");
-	const gateway = reactLocalStorage.getObject("paymentDetails");
 	const { register, handleSubmit, reset } = useForm({
 		defaultValues: {
 			firstName: "",
@@ -29,7 +27,6 @@ const ContactForm = ({ payment }) => {
 			userEmail,
 			phone,
 			comment,
-			gateway: gateway?.gateway || payment[1].gateway,
 		};
 		reactLocalStorage.setObject("contactDetails", data);
 		navigate(destination);
@@ -106,9 +103,6 @@ const ContactForm = ({ payment }) => {
 									rows={7.3}
 									{...register("comment")}
 								/>
-							</Grid>
-							<Grid item md={12} xs={12}>
-								<PaymentMethod payment={payment} />
 							</Grid>
 							<Grid item md={12} xs={12}>
 								<Grid container spacing={{ md: 2, xs: 0 }}>

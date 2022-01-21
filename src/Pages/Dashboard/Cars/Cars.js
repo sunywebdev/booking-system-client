@@ -85,7 +85,7 @@ const Cars = () => {
 										<TableCell align='left'>{count++}</TableCell>
 										<TableCell align='left'>
 											<img
-												src={car?.carPhoto}
+												src={car?.carPhoto1}
 												alt=''
 												width='120px'
 												height='60px'

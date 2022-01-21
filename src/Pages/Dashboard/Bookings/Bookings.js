@@ -1,4 +1,5 @@
 import {
+	Box,
 	Button,
 	Container,
 	Grid,
@@ -7,6 +8,7 @@ import {
 	TableCell,
 	TableHead,
 	TableRow,
+	TextField,
 	Typography,
 } from "@mui/material";
 import Paper from "@mui/material/Paper";
@@ -17,14 +19,34 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
+import { CSVLink } from "react-csv";
 
 const Bookings = () => {
 	const [deleted, setDeleted] = useState(false);
 	const [bookings, setBookings] = useState([]);
+	const [search, setSearch] = React.useState("");
+	const [newList, setNewList] = React.useState([]);
+	const handleChange = (event) => {
+		setSearch(event.target.value);
+	};
+	useEffect(() => {
+		const searchs = bookings.filter(
+			(booking) =>
+				booking.firstName.toLowerCase().includes(search.toLowerCase()) ||
+				booking.lastName.toLowerCase().includes(search.toLowerCase()) ||
+				booking.txn.toLowerCase().includes(search.toLowerCase()) ||
+				booking.phone.toLowerCase().includes(search.toLowerCase()),
+		);
+		setNewList(searchs);
+	}, [bookings, search]);
+
 	useEffect(() => {
 		fetch(`https://fierce-reef-90342.herokuapp.com/bookings`)
 			.then((res) => res.json())
-			.then((data) => setBookings(data.reverse()));
+			.then((data) => {
+				setBookings(data.reverse());
+				setNewList(data.reverse());
+			});
 	}, [deleted]);
 	const handleDelete = (id) => {
 		Swal.fire({
@@ -50,6 +72,44 @@ const Bookings = () => {
 		});
 	};
 	let count = 1;
+	const headers = [
+		{ label: "First Name", key: "firstName" },
+		{ label: "Last Name", key: "lastName" },
+		{ label: "Email", key: "userEmail" },
+		{ label: "Phone Number", key: "phone" },
+		{ label: "Notes", key: "comment" },
+		{ label: "Booking Time", key: "bookingTime" },
+		{ label: "TXN", key: "txn" },
+		{ label: "Vehicle", key: "carName" },
+		{ label: "Ride Type", key: "rideType" },
+		{ label: "Picup Location", key: "picupLocation2" },
+		{ label: "Drop-Off Location", key: "dropOffLocation2" },
+		{ label: "Duration", key: "duration2" },
+		{ label: "Picup Time", key: "time2" },
+		{ label: "Ride Type", key: "rideType" },
+		{ label: "Picup Location", key: "picupLocation1" },
+		{ label: "Drop-Off Location", key: "dropOffLocation1" },
+		{ label: "Extra Time", key: "extraTime1" },
+		{ label: "Picup Time", key: "time1" },
+		{ label: "Ride Type", key: "rideType" },
+		{ label: "Service Type", key: "transferType3" },
+		{ label: "Duration", key: "duration3" },
+		{ label: "Picup Time", key: "time3" },
+		{ label: "Ride Type", key: "rideType" },
+		{ label: "Duration", key: "duration4" },
+		{ label: "Picup Time", key: "time4" },
+		{ label: "Passengers", key: "passengers" },
+		{ label: "Passengers Count", key: "passengersCount" },
+		{ label: "Luggage", key: "luggage" },
+		{ label: "Luggage Count", key: "luggageCount" },
+		{ label: "Baby Seat", key: "babySeat" },
+		{ label: "Baby Seat Count", key: "babyCount" },
+		{ label: "Car Seat", key: "carSeat" },
+		{ label: "Car Seat Count", key: "carSeatCount" },
+		{ label: "Wheel Chair", key: "wheelchair" },
+		{ label: "Wheel Chair Count", key: "wheelchairCount" },
+	];
+
 	return (
 		<Container sx={{ mt: 2, minHeight: "100vh" }}>
 			<Grid>
@@ -60,6 +120,40 @@ const Bookings = () => {
 					gutterBottom>
 					Booking Requests
 				</Typography>
+				<Box sx={{ my: 2 }}>
+					<Button
+						className='buttonColor'
+						sx={{
+							fontWeight: "bold",
+							border: "2px solid",
+							backgroundColor: "transparent",
+							borderRadius: "25px",
+							m: 0.5,
+						}}
+						variant='contained'>
+						<CSVLink
+							data={bookings}
+							headers={headers}
+							className='buttonColor'
+							style={{
+								textDecoration: "none",
+								color: "white",
+							}}>
+							Download CSV File
+						</CSVLink>
+					</Button>
+				</Box>
+				<Grid container spacing={2}>
+					<Grid item md={6} xs={12} sx={{ mx: "auto" }}>
+						<TextField
+							sx={{ mb: 2, width: "100%" }}
+							id='outlined-name'
+							placeholder='Search by Name / TXN / Phone'
+							value={search}
+							onChange={handleChange}
+						/>
+					</Grid>
+				</Grid>
 				<Paper
 					className='container'
 					sx={{ overflow: "auto", maxHeight: "80vh", maxWidth: "90vw" }}>
@@ -73,9 +167,9 @@ const Bookings = () => {
 								<TableCell align='center'>Action</TableCell>
 							</TableRow>
 						</TableHead>
-						{bookings?.length > 0 ? (
+						{newList?.length > 0 ? (
 							<TableBody sx={{ td: { py: 1 } }}>
-								{bookings.map((booking) => (
+								{newList.map((booking) => (
 									<TableRow
 										key={booking?._id}
 										sx={{

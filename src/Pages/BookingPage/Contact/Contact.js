@@ -8,10 +8,7 @@ import a from "./2.jpg";
 import b from "./3.jpg";
 
 const Contact = () => {
-	const payment = [
-		{ id: 1, img: a, gateway: "Stripe" },
-		{ id: 2, img: b, gateway: "Card" },
-	];
+
 	return (
 		<Container>
 			<Box sx={{ my: 2.5 }}>
@@ -22,7 +19,7 @@ const Contact = () => {
 					<Summary />
 				</Grid>
 				<Grid item md={8} xs={12}>
-					<ContactForm payment={payment} />
+					<ContactForm />
 				</Grid>
 			</Grid>
 		</Container>
