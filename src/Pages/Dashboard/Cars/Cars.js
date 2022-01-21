@@ -14,7 +14,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Link } from "react-router-dom";
 
 const Cars = () => {
 	const [deleted, setDeleted] = useState(false);
