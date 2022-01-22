@@ -11,6 +11,7 @@ import Booking from "./Pages/Dashboard/Bookings/Booking";
 import Bookings from "./Pages/Dashboard/Bookings/Bookings";
 import Cars from "./Pages/Dashboard/Cars/Cars";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import Invoice from "./Pages/Dashboard/Invoice/Invoice";
 import Summary from "./Pages/Dashboard/Summary/Summary";
 import Login from "./Pages/Login/Login";
 import ResetPass from "./Pages/ResetPass/ResetPass";
@@ -33,6 +34,7 @@ function App() {
 							<Route path='/dashboard/addvehicle' element={<AddCar />} />
 							<Route path='/dashboard/vehicles' element={<Cars />} />
 							<Route path='/dashboard/bookings' element={<Bookings />} />
+							<Route path='/dashboard/invoice' element={<Invoice />} />
 							<Route path='/dashboard/bookings/:id' element={<Booking />} />
 						</Route>
 					</Routes>

@@ -20,12 +20,9 @@ const Vehicles = () => {
 
 	const data = reactLocalStorage.getObject("vehicles");
 	const [selectedId, setSelectedId] = React.useState(data?.carId || 1);
-	console.log(selectedId);
-	const [vehicle, setVehicle] = React.useState(null);
 
 	const setCar = (car) => {
 		setSelectedId(car?.carId);
-		setVehicle(car);
 		const data = {
 			carId: car?.carId,
 			carName: car?.carName,
@@ -38,7 +35,7 @@ const Vehicles = () => {
 		};
 		reactLocalStorage.setObject("vehicles", data);
 	};
-	console.log(vehicle);
+
 	return (
 		<div>
 			{cars?.map((car, key) => (

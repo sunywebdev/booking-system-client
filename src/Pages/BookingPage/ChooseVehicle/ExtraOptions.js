@@ -84,9 +84,13 @@ const ExtraOptions = () => {
 
 	return (
 		<div className='importantOptions'>
-			<ListItemButton dense>
+			<ListItemButton
+				button
+				disableRipple
+				disableTouchRipple
+				disablefocusribble="true">
 				<Grid container spacing={2} sx={{ alignItems: "center" }}>
-					<Grid item md={8} sm={6} xs={12}>
+					<Grid item md={6} sm={4} xs={12}>
 						<Box
 							sx={{
 								display: "flex",
@@ -94,25 +98,24 @@ const ExtraOptions = () => {
 								textAlign: "left",
 							}}>
 							<Typography variant='h6'>Total Luggage</Typography>
-							<Typography variant='subtitle2'>
-								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
-								voluptatibus quisquam veniam alias aut recusandae eveniet,
-								beatae facilis, nesciunt consectetur molestiae qui laudantium
-								placeat. Laudantium id error quaerat ex beatae.
-							</Typography>
 						</Box>
 					</Grid>
-					<Grid item md={2} sm={3} xs={6}>
+					<Grid item md={3} sm={4} xs={6}>
 						<ButtonGroup>
 							<Button
+								sx={{ color: "black" }}
 								aria-label='reduce'
 								onClick={() => {
 									setLuggageCount(Math.max(luggageCount - 1, 0));
 								}}>
 								<RemoveIcon fontSize='small' />
 							</Button>
-							<Button variant='outlined'> {luggageCount}</Button>
+							<Button sx={{ color: "black" }} variant='outlined'>
+								{" "}
+								{luggageCount}
+							</Button>
 							<Button
+								sx={{ color: "black" }}
 								aria-label='increase'
 								onClick={() => {
 									setLuggageCount(luggageCount + 1);
@@ -121,7 +124,7 @@ const ExtraOptions = () => {
 							</Button>
 						</ButtonGroup>
 					</Grid>
-					<Grid item md={2} sm={3} xs={6}>
+					<Grid item md={3} sm={4} xs={6}>
 						<ListItemIcon>
 							<Checkbox
 								icon={
@@ -155,9 +158,13 @@ const ExtraOptions = () => {
 				</Grid>
 			</ListItemButton>
 			<Divider sx={{ my: 1.5 }} />
-			<ListItemButton dense>
+			<ListItemButton
+				button
+				disableRipple
+				disableTouchRipple
+				disablefocusribble="true">
 				<Grid container spacing={2} sx={{ alignItems: "center" }}>
-					<Grid item md={8} sm={6} xs={12}>
+					<Grid item md={6} sm={4} xs={12}>
 						<Box
 							sx={{
 								display: "flex",
@@ -165,25 +172,24 @@ const ExtraOptions = () => {
 								textAlign: "left",
 							}}>
 							<Typography variant='h6'>Total Passengers</Typography>
-							<Typography variant='subtitle2'>
-								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
-								voluptatibus quisquam veniam alias aut recusandae eveniet,
-								beatae facilis, nesciunt consectetur molestiae qui laudantium
-								placeat. Laudantium id error quaerat ex beatae.
-							</Typography>
 						</Box>
 					</Grid>
-					<Grid item md={2} sm={3} xs={6}>
+					<Grid item md={3} sm={4} xs={6}>
 						<ButtonGroup>
 							<Button
+								sx={{ color: "black" }}
 								aria-label='reduce'
 								onClick={() => {
 									setPassengersCount(Math.max(passengersCount - 1, 0));
 								}}>
 								<RemoveIcon fontSize='small' />
 							</Button>
-							<Button variant='outlined'> {passengersCount}</Button>
+							<Button sx={{ color: "black" }} variant='outlined'>
+								{" "}
+								{passengersCount}
+							</Button>
 							<Button
+								sx={{ color: "black" }}
 								aria-label='increase'
 								onClick={() => {
 									setPassengersCount(passengersCount + 1);
@@ -192,7 +198,7 @@ const ExtraOptions = () => {
 							</Button>
 						</ButtonGroup>
 					</Grid>
-					<Grid item md={2} sm={3} xs={6}>
+					<Grid item md={3} sm={4} xs={6}>
 						<ListItemIcon>
 							<Checkbox
 								icon={
@@ -226,9 +232,13 @@ const ExtraOptions = () => {
 				</Grid>
 			</ListItemButton>
 			<Divider sx={{ my: 1.5 }} />
-			<ListItemButton dense>
+			<ListItemButton
+				button
+				disableRipple
+				disableTouchRipple
+				disablefocusribble="true">
 				<Grid container spacing={2} sx={{ alignItems: "center" }}>
-					<Grid item md={8} sm={6} xs={12}>
+					<Grid item md={6} sm={4} xs={12}>
 						<Box
 							sx={{
 								display: "flex",
@@ -236,25 +246,24 @@ const ExtraOptions = () => {
 								textAlign: "left",
 							}}>
 							<Typography variant='h6'>Child Seat</Typography>
-							<Typography variant='subtitle2'>
-								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
-								voluptatibus quisquam veniam alias aut recusandae eveniet,
-								beatae facilis, nesciunt consectetur molestiae qui laudantium
-								placeat. Laudantium id error quaerat ex beatae.
-							</Typography>
 						</Box>
 					</Grid>
-					<Grid item md={2} sm={3} xs={6}>
+					<Grid item md={3} sm={4} xs={6}>
 						<ButtonGroup>
 							<Button
+								sx={{ color: "black" }}
 								aria-label='reduce'
 								onClick={() => {
 									setBabyCount(Math.max(babyCount - 1, 0));
 								}}>
 								<RemoveIcon fontSize='small' />
 							</Button>
-							<Button variant='outlined'> {babyCount}</Button>
+							<Button sx={{ color: "black" }} variant='outlined'>
+								{" "}
+								{babyCount}
+							</Button>
 							<Button
+								sx={{ color: "black" }}
 								aria-label='increase'
 								onClick={() => {
 									setBabyCount(babyCount + 1);
@@ -263,7 +272,7 @@ const ExtraOptions = () => {
 							</Button>
 						</ButtonGroup>
 					</Grid>
-					<Grid item md={2} sm={3} xs={6}>
+					<Grid item md={3} sm={4} xs={6}>
 						<ListItemIcon>
 							<Checkbox
 								icon={
@@ -297,9 +306,13 @@ const ExtraOptions = () => {
 				</Grid>
 			</ListItemButton>
 			<Divider sx={{ my: 1.5 }} />
-			<ListItemButton dense>
+			<ListItemButton
+				button
+				disableRipple
+				disableTouchRipple
+				disablefocusribble="true">
 				<Grid container spacing={2} sx={{ alignItems: "center" }}>
-					<Grid item md={8} sm={6} xs={12}>
+					<Grid item md={6} sm={4} xs={12}>
 						<Box
 							sx={{
 								display: "flex",
@@ -307,25 +320,24 @@ const ExtraOptions = () => {
 								textAlign: "left",
 							}}>
 							<Typography variant='h6'>Wheel Chair</Typography>
-							<Typography variant='subtitle2'>
-								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
-								voluptatibus quisquam veniam alias aut recusandae eveniet,
-								beatae facilis, nesciunt consectetur molestiae qui laudantium
-								placeat. Laudantium id error quaerat ex beatae.
-							</Typography>
 						</Box>
 					</Grid>
-					<Grid item md={2} sm={3} xs={6}>
+					<Grid item md={3} sm={4} xs={6}>
 						<ButtonGroup>
 							<Button
+								sx={{ color: "black" }}
 								aria-label='reduce'
 								onClick={() => {
 									setWheelchairCount(Math.max(wheelchairCount - 1, 0));
 								}}>
 								<RemoveIcon fontSize='small' />
 							</Button>
-							<Button variant='outlined'> {wheelchairCount}</Button>
+							<Button sx={{ color: "black" }} variant='outlined'>
+								{" "}
+								{wheelchairCount}
+							</Button>
 							<Button
+								sx={{ color: "black" }}
 								aria-label='increase'
 								onClick={() => {
 									setWheelchairCount(wheelchairCount + 1);
@@ -334,7 +346,7 @@ const ExtraOptions = () => {
 							</Button>
 						</ButtonGroup>
 					</Grid>
-					<Grid item md={2} sm={3} xs={6}>
+					<Grid item md={3} sm={4} xs={6}>
 						<ListItemIcon>
 							<Checkbox
 								icon={
@@ -368,9 +380,13 @@ const ExtraOptions = () => {
 				</Grid>
 			</ListItemButton>
 			<Divider sx={{ my: 1.5 }} />
-			<ListItemButton dense>
+			<ListItemButton
+				button
+				disableRipple
+				disableTouchRipple
+				disablefocusribble="true">
 				<Grid container spacing={2} sx={{ alignItems: "center" }}>
-					<Grid item md={8} sm={6} xs={12}>
+					<Grid item md={6} sm={4} xs={12}>
 						<Box
 							sx={{
 								display: "flex",
@@ -378,25 +394,24 @@ const ExtraOptions = () => {
 								textAlign: "left",
 							}}>
 							<Typography variant='h6'>Car Seat</Typography>
-							<Typography variant='subtitle2'>
-								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque
-								voluptatibus quisquam veniam alias aut recusandae eveniet,
-								beatae facilis, nesciunt consectetur molestiae qui laudantium
-								placeat. Laudantium id error quaerat ex beatae.
-							</Typography>
 						</Box>
 					</Grid>
-					<Grid item md={2} sm={3} xs={6}>
+					<Grid item md={3} sm={4} xs={6}>
 						<ButtonGroup>
 							<Button
+								sx={{ color: "black" }}
 								aria-label='reduce'
 								onClick={() => {
 									setcarSeatCount(Math.max(carSeatCount - 1, 0));
 								}}>
 								<RemoveIcon fontSize='small' />
 							</Button>
-							<Button variant='outlined'> {carSeatCount}</Button>
+							<Button sx={{ color: "black" }} variant='outlined'>
+								{" "}
+								{carSeatCount}
+							</Button>
 							<Button
+								sx={{ color: "black" }}
 								aria-label='increase'
 								onClick={() => {
 									setcarSeatCount(carSeatCount + 1);
@@ -405,7 +420,7 @@ const ExtraOptions = () => {
 							</Button>
 						</ButtonGroup>
 					</Grid>
-					<Grid item md={2} sm={3} xs={6}>
+					<Grid item md={3} sm={4} xs={6}>
 						<ListItemIcon>
 							<Checkbox
 								icon={
