@@ -4,6 +4,7 @@ import AuthProvider from "./context/AuthProvider";
 import ChooseVehicle from "./Pages/BookingPage/ChooseVehicle/ChooseVehicle";
 import Confirm from "./Pages/BookingPage/Confirm/Confirm";
 import Contact from "./Pages/BookingPage/Contact/Contact";
+import CustomerType from "./Pages/BookingPage/CustomerType/CustomerType";
 import RideDetails from "./Pages/BookingPage/RideDetails/RideDetails";
 import TotalSummary from "./Pages/BookingPage/TotalSummary/TotalSummary";
 import AddCar from "./Pages/Dashboard/AddCar/AddCar";
@@ -22,7 +23,8 @@ function App() {
 			<AuthProvider>
 				<BrowserRouter>
 					<Routes>
-						<Route path='/' element={<RideDetails />}></Route>
+						<Route path='/' element={<CustomerType />}></Route>
+						<Route path='/booking' element={<RideDetails />}></Route>
 						<Route path='/login' element={<Login />}></Route>
 						<Route path='/resetpassword' element={<ResetPass />}></Route>
 						<Route path='/choosevehicle' element={<ChooseVehicle />}></Route>

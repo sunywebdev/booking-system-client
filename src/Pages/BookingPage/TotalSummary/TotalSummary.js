@@ -24,6 +24,7 @@ const TotalSummary = () => {
 	const rideDetails = reactLocalStorage.getObject("rideDetails");
 	const contactDetails = reactLocalStorage.getObject("contactDetails");
 	const extraOpions = reactLocalStorage.getObject("importantOpions");
+	const client = reactLocalStorage.getObject("client");
 	const navigate = useNavigate();
 	const destination = "/confirm";
 	const confirm = () => {
@@ -35,6 +36,7 @@ const TotalSummary = () => {
 			...rideDetails,
 			...contactDetails,
 			...extraOpions,
+			...client,
 		};
 		setSubmitting(true);
 		axios
@@ -62,6 +64,38 @@ const TotalSummary = () => {
 			</Box>
 			<Grid container spacing={3}>
 				<Grid item md={4} xs={12}>
+					<Box sx={{ textAlign: "left", bgcolor: "#F6F6F6", p: 1.5, mb: 1 }}>
+						<Typography
+							gutterBottom
+							variant='h5'
+							component='div'
+							sx={{ mb: 2 }}>
+							About
+						</Typography>
+						<Box>
+							<Typography gutterBottom variant='body' component='div'>
+								Booking For ?
+							</Typography>
+							<Typography gutterBottom variant='body2' component='div'>
+								{client?.forWhom || "N/A"}
+							</Typography>
+							<Divider sx={{ my: 1.5 }} />
+							<Typography gutterBottom variant='body' component='div'>
+								You Are ?
+							</Typography>
+							<Typography gutterBottom variant='body2' component='div'>
+								{client?.forWho || "N/A"}
+							</Typography>
+							<Divider sx={{ my: 1.5 }} />
+							<Typography gutterBottom variant='body' component='div'>
+								Company
+							</Typography>
+							<Typography gutterBottom variant='body2' component='div'>
+								{client?.company || client?.reqCompany || "N/A"}
+							</Typography>
+							<Divider sx={{ my: 1.5 }} />
+						</Box>
+					</Box>
 					<Box sx={{ textAlign: "left", bgcolor: "#F6F6F6", p: 1.5 }}>
 						<Typography
 							gutterBottom

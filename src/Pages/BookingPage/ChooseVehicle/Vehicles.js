@@ -19,8 +19,8 @@ const Vehicles = () => {
 	}, []);
 
 	const data = reactLocalStorage.getObject("vehicles");
-	const [selectedId, setSelectedId] = React.useState(data?.carId || 1);
-
+	const [selectedId, setSelectedId] = React.useState(data?.carId);
+	console.log(data?.carId);
 	const setCar = (car) => {
 		setSelectedId(car?.carId);
 		const data = {

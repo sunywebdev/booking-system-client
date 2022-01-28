@@ -4,6 +4,9 @@
 .buttonColor {
 	background-color: #252525 !important;
 }
+.buttonActiveColor {
+	background-color: #ff700a!important;
+}
 .activeButtonColor {
 	background-color: #ff700a !important;
 }

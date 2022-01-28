@@ -28,6 +28,38 @@ const Booking = () => {
 			<Container sx={{ py: 2 }}>
 				<Grid container spacing={3}>
 					<Grid item md={4} xs={12}>
+						<Box sx={{ textAlign: "left", bgcolor: "#F6F6F6", p: 1.5, mb: 1 }}>
+							<Typography
+								gutterBottom
+								variant='h5'
+								component='div'
+								sx={{ mb: 2 }}>
+								About
+							</Typography>
+							<Box>
+								<Typography gutterBottom variant='body' component='div'>
+									Booking For ?
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{data?.forWhom || "N/A"}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									You Are ?
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{data?.forWho || "N/A"}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+								<Typography gutterBottom variant='body' component='div'>
+									Company
+								</Typography>
+								<Typography gutterBottom variant='body2' component='div'>
+									{data?.company || data?.reqCompany || "N/A"}
+								</Typography>
+								<Divider sx={{ my: 1.5 }} />
+							</Box>
+						</Box>
 						<Box sx={{ textAlign: "left", bgcolor: "#F6F6F6", p: 1.5 }}>
 							<Typography
 								gutterBottom
