@@ -107,6 +107,9 @@ const Bookings = () => {
 
 	let count = 1;
 	const headers = [
+		{ label: "Booking For?", key: "forWhom" },
+		{ label: "You Are ?", key: "forWho" },
+		{ label: "Company", key: "company" },
 		{ label: "First Name", key: "firstName" },
 		{ label: "Last Name", key: "lastName" },
 		{ label: "Email", key: "userEmail" },
