@@ -1,6 +1,8 @@
 import {
+	Backdrop,
 	Box,
 	Button,
+	CircularProgress,
 	Container,
 	Grid,
 	Table,
@@ -21,6 +23,8 @@ import { Link } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
 import { CSVLink } from "react-csv";
 import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
+import PersonIcon from "@mui/icons-material/Person";
+import BusinessIcon from "@mui/icons-material/Business";
 
 const Bookings = () => {
 	const [deleted, setDeleted] = useState(false);
@@ -34,19 +38,20 @@ const Bookings = () => {
 	useEffect(() => {
 		const searchs = bookings.filter(
 			(booking) =>
-				booking.firstName.toLowerCase().includes(search.toLowerCase()) ||
-				booking.lastName.toLowerCase().includes(search.toLowerCase()) ||
-				booking.txn.toLowerCase().includes(search.toLowerCase()) ||
-				booking.phone.toLowerCase().includes(search.toLowerCase()),
+				booking?.firstName?.toLowerCase().includes(search.toLowerCase()) ||
+				booking?.lastName?.toLowerCase().includes(search.toLowerCase()) ||
+				booking?.txn?.toLowerCase().includes(search.toLowerCase()) ||
+				booking?.phone?.toLowerCase().includes(search.toLowerCase()) ||
+				booking?.company?.toLowerCase().includes(search.toLowerCase()),
 		);
-		setNewList(searchs.reverse());
+		setNewList(searchs);
 	}, [bookings, search]);
 
 	useEffect(() => {
 		fetch(`https://fierce-reef-90342.herokuapp.com/bookings`)
 			.then((res) => res.json())
 			.then((data) => {
-				setBookings(data.reverse());
+				setBookings(data);
 				setNewList(data.reverse());
 			});
 	}, [deleted, done]);
@@ -186,7 +191,7 @@ const Bookings = () => {
 						<TextField
 							sx={{ mb: 2, width: "100%" }}
 							id='outlined-name'
-							placeholder='Search by Name / TXN / Phone'
+							placeholder='Search by Name / TXN / Phone ? Company'
 							value={search}
 							onChange={handleChange}
 						/>
@@ -233,7 +238,31 @@ const Bookings = () => {
 												{booking?.firstName + " " + booking?.lastName}
 											</TableCell>
 										)}
-										<TableCell align='left'>{booking?.txn}</TableCell>
+										{booking?.forWho === "A Company" ? (
+											<TableCell align='left'>
+												<div
+													style={{
+														display: "flex",
+														justifyContent: "center",
+														alignItems: "center",
+													}}>
+													<BusinessIcon sx={{ mr: 1 }} />
+													{booking?.txn}
+												</div>
+											</TableCell>
+										) : (
+											<TableCell>
+												<div
+													style={{
+														display: "flex",
+														justifyContent: "center",
+														alignItems: "center",
+													}}>
+													<PersonIcon sx={{ mr: 1 }} />
+													{booking?.txn}
+												</div>
+											</TableCell>
+										)}
 										<TableCell align='left'>{booking?.bookingTime}</TableCell>
 										<TableCell align='center'>
 											<Link
@@ -302,6 +331,14 @@ const Bookings = () => {
 				</Paper>
 			</Grid>
 			{!bookings && <BeatLoader size={10} />}
+			<Backdrop
+				sx={{
+					color: "#fff",
+					zIndex: (theme) => theme.zIndex.drawer + 1,
+				}}
+				open={!bookings?.length}>
+				<CircularProgress color='inherit' />
+			</Backdrop>
 		</Container>
 	);
 };

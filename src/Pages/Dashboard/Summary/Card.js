@@ -26,7 +26,7 @@ const Card = ({ bookings, ChauffeurServices, FlatRate, Hourly, Distance }) => {
 									Distance
 								</Typography>
 								<Typography variant='h5' component='div'>
-									<CountUp isCounting end={Distance} duration={3} />
+									<CountUp isCounting end={Distance} duration={2} />
 								</Typography>
 							</Box>
 						</Box>
@@ -47,7 +47,7 @@ const Card = ({ bookings, ChauffeurServices, FlatRate, Hourly, Distance }) => {
 									Hourly
 								</Typography>
 								<Typography variant='h5' component='div'>
-									<CountUp isCounting end={Hourly} duration={3} />
+									<CountUp isCounting end={Hourly} duration={2} />
 								</Typography>
 							</Box>
 						</Box>
@@ -68,7 +68,7 @@ const Card = ({ bookings, ChauffeurServices, FlatRate, Hourly, Distance }) => {
 									Flat Rate
 								</Typography>
 								<Typography variant='h5' component='div'>
-									<CountUp isCounting end={FlatRate} duration={3} />
+									<CountUp isCounting end={FlatRate} duration={2} />
 								</Typography>
 							</Box>
 						</Box>
@@ -89,7 +89,7 @@ const Card = ({ bookings, ChauffeurServices, FlatRate, Hourly, Distance }) => {
 									Chauffeur
 								</Typography>
 								<Typography variant='h5' component='div'>
-									<CountUp isCounting end={ChauffeurServices} duration={3} />
+									<CountUp isCounting end={ChauffeurServices} duration={2} />
 								</Typography>
 							</Box>
 						</Box>

@@ -9,6 +9,7 @@ import {
 	TableCell,
 	TableHead,
 	TableRow,
+	TextField,
 	Typography,
 } from "@mui/material";
 import Paper from "@mui/material/Paper";
@@ -16,15 +17,17 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useForm } from "react-hook-form";
 
-const Cars = () => {
+const CompanyList = () => {
+	const [submitting, setSubmitting] = useState(false);
 	const [deleted, setDeleted] = useState(false);
-	const [cars, setCars] = useState([]);
+	const [companyList, setCompanyList] = useState([]);
 	useEffect(() => {
-		fetch(`https://fierce-reef-90342.herokuapp.com/cars`)
+		fetch(`https://fierce-reef-90342.herokuapp.com/companylist`)
 			.then((res) => res.json())
-			.then((data) => setCars(data.reverse()));
-	}, [deleted]);
+			.then((data) => setCompanyList(data.reverse()));
+	}, [deleted, submitting]);
 	const handleDelete = (id) => {
 		Swal.fire({
 			title: "Are you sure?",
@@ -37,9 +40,9 @@ const Cars = () => {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				axios
-					.delete(`https://fierce-reef-90342.herokuapp.com/cars/${id}`)
+					.delete(`https://fierce-reef-90342.herokuapp.com/companylist/${id}`)
 					.then(function (response) {
-						Swal.fire("Deleted!", "That car has been deleted.", "success");
+						Swal.fire("Deleted!", "That Company has been deleted.", "success");
 						setDeleted(true);
 					})
 					.catch(function (error) {
@@ -48,16 +51,78 @@ const Cars = () => {
 			}
 		});
 	};
+
+	const { register, handleSubmit, reset } = useForm();
+
+	const onSubmit = ({ name }) => {
+		const data = {
+			time: new Date().toLocaleString(),
+			name,
+		};
+		setSubmitting(true);
+		axios
+			.post(`https://fierce-reef-90342.herokuapp.com/companylist`, data)
+			.then(function (response) {
+				setSubmitting(false);
+				Swal.fire({
+					icon: "success",
+					title: "New Company Added Successfully",
+					showConfirmButton: false,
+					timer: 1500,
+				}).then(function () {
+					reset();
+				});
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	};
+
 	let count = 1;
+
 	return (
 		<Container sx={{ mt: 2, minHeight: "100vh" }}>
+			<Grid container spacing={2} sx={{ mb: 3 }}>
+				<Grid item md={6} xs={12} sx={{ mx: "auto" }}>
+					<Typography
+						sx={{ mb: 3, fontWeight: "bold" }}
+						variant='h4'
+						component='div'
+						gutterBottom>
+						Add New Company
+					</Typography>
+					<form onSubmit={handleSubmit(onSubmit)}>
+						<TextField
+							required
+							sx={{ width: "100%", mb: 2 }}
+							id='"outlined-multiline-flexible'
+							label='Company Name'
+							{...register("name", { required: true })}
+						/>
+						<Button
+							type='submit'
+							variant='contained'
+							className='buttonColor'
+							sx={{
+								width: "100%",
+								mb: 2,
+								px: 3,
+								fontWeight: "bold",
+								border: "2px solid",
+								borderRadius: "25px",
+							}}>
+							ADD COMPANY
+						</Button>
+					</form>
+				</Grid>
+			</Grid>
 			<Grid>
 				<Typography
 					sx={{ mb: 3, fontWeight: "bold" }}
 					variant='h4'
 					component='div'
 					gutterBottom>
-					Vehicles
+					Company List
 				</Typography>
 				<Paper
 					className='container'
@@ -66,39 +131,26 @@ const Cars = () => {
 						<TableHead sx={{ th: { fontWeight: "bold" } }}>
 							<TableRow>
 								<TableCell align='left'>No</TableCell>
-								<TableCell align='left'>Photo</TableCell>
+								<TableCell align='left'>Added Time</TableCell>
 								<TableCell align='left'>Name</TableCell>
-								<TableCell align='left'>Max Passenger</TableCell>
-								<TableCell align='left'>Max Luggage</TableCell>
-								<TableCell align='left'>Details</TableCell>
 								<TableCell align='center'>Action</TableCell>
 							</TableRow>
 						</TableHead>
-						{cars?.length > 0 ? (
+						{companyList?.length > 0 ? (
 							<TableBody sx={{ td: { py: 1 } }}>
-								{cars.map((car) => (
+								{companyList.map((company) => (
 									<TableRow
-										key={car?._id}
+										key={company?._id}
 										sx={{
 											"&:last-child td, &:last-child th": { border: 0 },
 										}}>
 										<TableCell align='left'>{count++}</TableCell>
-										<TableCell align='left'>
-											<img
-												src={car?.carPhoto1}
-												alt=''
-												width='120px'
-												height='60px'
-											/>
-										</TableCell>
-										<TableCell align='left'>{car?.carName}</TableCell>
-										<TableCell align='left'>{car?.carPassenger}</TableCell>
-										<TableCell align='left'>{car?.carLuggage}</TableCell>
-										<TableCell align='left'>{car?.carInfo}</TableCell>
+										<TableCell align='left'>{company?.time}</TableCell>
+										<TableCell align='left'>{company?.name}</TableCell>
 										<TableCell align='center'>
 											<Button
 												className='buttonColor'
-												onClick={() => handleDelete(car?._id)}
+												onClick={() => handleDelete(company?._id)}
 												sx={{
 													fontWeight: "bold",
 													border: "2px solid",
@@ -120,9 +172,6 @@ const Cars = () => {
 									<TableCell align='left'>N/A</TableCell>
 									<TableCell align='left'>N/A</TableCell>
 									<TableCell align='left'>N/A</TableCell>
-									<TableCell align='left'>N/A</TableCell>
-									<TableCell align='left'>N/A</TableCell>
-									<TableCell align='left'>N/A</TableCell>
 								</TableRow>
 							</TableHead>
 						)}
@@ -134,11 +183,11 @@ const Cars = () => {
 					color: "#fff",
 					zIndex: (theme) => theme.zIndex.drawer + 1,
 				}}
-				open={!cars?.length}>
+				open={submitting || !companyList?.length}>
 				<CircularProgress color='inherit' />
 			</Backdrop>
 		</Container>
 	);
 };
 
-export default Cars;
+export default CompanyList;

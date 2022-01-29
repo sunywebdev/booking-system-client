@@ -44,20 +44,31 @@ const Booking = () => {
 									{data?.forWhom || "N/A"}
 								</Typography>
 								<Divider sx={{ my: 1.5 }} />
-								<Typography gutterBottom variant='body' component='div'>
-									You Are ?
-								</Typography>
-								<Typography gutterBottom variant='body2' component='div'>
-									{data?.forWho || "N/A"}
-								</Typography>
-								<Divider sx={{ my: 1.5 }} />
-								<Typography gutterBottom variant='body' component='div'>
-									Company
-								</Typography>
-								<Typography gutterBottom variant='body2' component='div'>
-									{data?.company || data?.reqCompany || "N/A"}
-								</Typography>
-								<Divider sx={{ my: 1.5 }} />
+
+								{(!data?.forWhom === "Booking for myself" || data?.forWho) && (
+									<>
+										<Typography gutterBottom variant='body' component='div'>
+											You Are ?
+										</Typography>
+										<Typography gutterBottom variant='body2' component='div'>
+											{data?.forWho || "N/A"}
+										</Typography>
+										<Divider sx={{ my: 1.5 }} />
+									</>
+								)}
+								{(!data?.forWhom === "Booking for myself" ||
+									!data?.forWho === "A Person" ||
+									data?.company) && (
+									<>
+										<Typography gutterBottom variant='body' component='div'>
+											Company
+										</Typography>
+										<Typography gutterBottom variant='body2' component='div'>
+											{data?.company || data?.reqCompany || "N/A"}
+										</Typography>
+										<Divider sx={{ my: 1.5 }} />
+									</>
+								)}
 							</Box>
 						</Box>
 						<Box sx={{ textAlign: "left", bgcolor: "#F6F6F6", p: 1.5 }}>

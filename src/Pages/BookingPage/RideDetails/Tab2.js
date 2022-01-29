@@ -16,8 +16,8 @@ import {
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { reactLocalStorage } from "reactjs-localstorage";
-import { useNavigate } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 export default function Tab2() {
 	const data = reactLocalStorage.getObject("rideDetails");
 	const [dateTime, setValue] = React.useState(new Date(data?.time2) || "");
@@ -121,7 +121,18 @@ export default function Tab2() {
 								{...register("dropOffLocation2", { required: true })}
 							/>
 						</Grid>
-						<Grid item md={12} xs={12}>
+						<Grid item md={6} xs={12}>
+							<Link to='/' style={{ textDecoration: "none" }}>
+								<Button
+									className='buttonColor'
+									variant='contained'
+									sx={{ width: "100%", py: 1.7 }}>
+									<ArrowBackIcon sx={{ mr: 1 }} />
+									Back
+								</Button>
+							</Link>
+						</Grid>
+						<Grid item md={6} xs={12}>
 							<Button
 								type='submit'
 								className='buttonColor'

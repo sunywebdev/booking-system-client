@@ -28,9 +28,7 @@ const TotalSummary = () => {
 	const navigate = useNavigate();
 	const destination = "/confirm";
 	const confirm = () => {
-		const randomNumber = Math.floor(Math.random() * 90000) + 10000;
 		const data = {
-			txn: "EL" + randomNumber,
 			bookingTime: new Date().toLocaleString(),
 			...vehicles,
 			...rideDetails,
@@ -80,20 +78,31 @@ const TotalSummary = () => {
 								{client?.forWhom || "N/A"}
 							</Typography>
 							<Divider sx={{ my: 1.5 }} />
-							<Typography gutterBottom variant='body' component='div'>
-								You Are ?
-							</Typography>
-							<Typography gutterBottom variant='body2' component='div'>
-								{client?.forWho || "N/A"}
-							</Typography>
-							<Divider sx={{ my: 1.5 }} />
-							<Typography gutterBottom variant='body' component='div'>
-								Company
-							</Typography>
-							<Typography gutterBottom variant='body2' component='div'>
-								{client?.company || client?.reqCompany || "N/A"}
-							</Typography>
-							<Divider sx={{ my: 1.5 }} />
+							{(!client?.forWhom === "Booking for myself" ||
+								client?.forWho) && (
+								<>
+									<Typography gutterBottom variant='body' component='div'>
+										You Are ?
+									</Typography>
+									<Typography gutterBottom variant='body2' component='div'>
+										{client?.forWho || "N/A"}
+									</Typography>
+									<Divider sx={{ my: 1.5 }} />
+								</>
+							)}
+							{(!client?.forWhom === "Booking for myself" ||
+								!client?.forWho === "A Person" ||
+								client?.company) && (
+								<>
+									<Typography gutterBottom variant='body' component='div'>
+										Company
+									</Typography>
+									<Typography gutterBottom variant='body2' component='div'>
+										{client?.company || client?.reqCompany || "N/A"}
+									</Typography>
+									<Divider sx={{ my: 1.5 }} />
+								</>
+							)}
 						</Box>
 					</Box>
 					<Box sx={{ textAlign: "left", bgcolor: "#F6F6F6", p: 1.5 }}>

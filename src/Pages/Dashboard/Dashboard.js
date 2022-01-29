@@ -19,6 +19,7 @@ import useAuth from "../../context/useAuth";
 import InfoIcon from "@mui/icons-material/Info";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import ListAltIcon from "@mui/icons-material/ListAlt";
+import BusinessIcon from "@mui/icons-material/Business";
 
 const drawerWidth = 222;
 
@@ -59,6 +60,21 @@ function Dashboard(props) {
 							<DirectionsCarIcon />
 						</ListItemIcon>
 						<ListItemText primary={"Add Vehicle"} />
+					</ListItem>
+				</Link>
+				<Link
+					style={{
+						textDecoration: "none",
+						fontWeight: "bold",
+						fontSize: "15px",
+						color: "white",
+					}}
+					to='addcompany'>
+					<ListItem button>
+						<ListItemIcon sx={{ justifyContent: "center" }}>
+							<BusinessIcon />
+						</ListItemIcon>
+						<ListItemText primary={"All Company"} />
 					</ListItem>
 				</Link>
 				<Link

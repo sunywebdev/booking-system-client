@@ -11,6 +11,7 @@ import AddCar from "./Pages/Dashboard/AddCar/AddCar";
 import Booking from "./Pages/Dashboard/Bookings/Booking";
 import Bookings from "./Pages/Dashboard/Bookings/Bookings";
 import Cars from "./Pages/Dashboard/Cars/Cars";
+import CompanyList from "./Pages/Dashboard/CompanyList/CompanyList";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Invoice from "./Pages/Dashboard/Invoice/Invoice";
 import Summary from "./Pages/Dashboard/Summary/Summary";
@@ -34,6 +35,7 @@ function App() {
 						<Route path='/dashboard' element={<Dashboard />}>
 							<Route path='/dashboard' element={<Summary />} />
 							<Route path='/dashboard/addvehicle' element={<AddCar />} />
+							<Route path='/dashboard/addcompany' element={<CompanyList />} />
 							<Route path='/dashboard/vehicles' element={<Cars />} />
 							<Route path='/dashboard/bookings' element={<Bookings />} />
 							<Route path='/dashboard/invoice' element={<Invoice />} />

@@ -88,7 +88,7 @@ const ExtraOptions = () => {
 				button
 				disableRipple
 				disableTouchRipple
-				disablefocusribble="true">
+				disablefocusribble='true'>
 				<Grid container spacing={2} sx={{ alignItems: "center" }}>
 					<Grid item md={6} sm={4} xs={12}>
 						<Box
@@ -162,7 +162,7 @@ const ExtraOptions = () => {
 				button
 				disableRipple
 				disableTouchRipple
-				disablefocusribble="true">
+				disablefocusribble='true'>
 				<Grid container spacing={2} sx={{ alignItems: "center" }}>
 					<Grid item md={6} sm={4} xs={12}>
 						<Box
@@ -236,7 +236,7 @@ const ExtraOptions = () => {
 				button
 				disableRipple
 				disableTouchRipple
-				disablefocusribble="true">
+				disablefocusribble='true'>
 				<Grid container spacing={2} sx={{ alignItems: "center" }}>
 					<Grid item md={6} sm={4} xs={12}>
 						<Box
@@ -310,7 +310,7 @@ const ExtraOptions = () => {
 				button
 				disableRipple
 				disableTouchRipple
-				disablefocusribble="true">
+				disablefocusribble='true'>
 				<Grid container spacing={2} sx={{ alignItems: "center" }}>
 					<Grid item md={6} sm={4} xs={12}>
 						<Box
@@ -384,7 +384,7 @@ const ExtraOptions = () => {
 				button
 				disableRipple
 				disableTouchRipple
-				disablefocusribble="true">
+				disablefocusribble='true'>
 				<Grid container spacing={2} sx={{ alignItems: "center" }}>
 					<Grid item md={6} sm={4} xs={12}>
 						<Box
@@ -455,7 +455,7 @@ const ExtraOptions = () => {
 			</ListItemButton>
 			<Grid container spacing={{ md: 2, xs: 0 }}>
 				<Grid item md={6} xs={12}>
-					<Link to='/' style={{ textDecoration: "none" }}>
+					<Link to='/booking' style={{ textDecoration: "none" }}>
 						<Button
 							className='buttonColor'
 							variant='contained'

@@ -1,4 +1,4 @@
-import { Container, Grid } from "@mui/material";
+import { Backdrop, CircularProgress, Container, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Calander from "./Calander";
 import Card from "./Card";
@@ -6,11 +6,13 @@ import Chart from "./Chart";
 
 const Summary = () => {
 	const [bookings, setBookings] = useState([]);
+	const [submitting, setSubmitting] = useState(true);
 	useEffect(() => {
 		fetch(`https://fierce-reef-90342.herokuapp.com/bookings`)
 			.then((res) => res.json())
 			.then((data) => {
 				setBookings(data.reverse());
+				setSubmitting(false);
 			});
 	}, []);
 	const Distance = bookings.filter(
@@ -51,6 +53,14 @@ const Summary = () => {
 					/>
 				</Grid>
 			</Grid>
+			<Backdrop
+				sx={{
+					color: "#fff",
+					zIndex: (theme) => theme.zIndex.drawer + 1,
+				}}
+				open={submitting}>
+				<CircularProgress color='inherit' />
+			</Backdrop>
 		</Container>
 	);
 };
