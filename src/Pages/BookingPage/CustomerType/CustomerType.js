@@ -82,16 +82,17 @@ const CustomerType = () => {
 	return (
 		<div>
 			<Container
-				style={{
+				sx={{
 					position: "absolute",
 					left: "50%",
 					top: "50%",
 					transform: "translate(-50%, -50%)",
+					minHeight: "70vh",
 				}}>
 				<img src={logo} alt='' style={{ width: "200px", margin: "9px 0" }} />
 				<Typography
 					gutterBottom
-					variant='h4'
+					variant='h5'
 					component='div'
 					sx={{ fontWeight: "bold" }}>
 					Please Select For Booking
@@ -216,7 +217,7 @@ const CustomerType = () => {
 												</em>
 											</MenuItem>
 											{companyList?.map((company, key) => (
-												<MenuItem key={key} value={company?.company}>
+												<MenuItem key={key} value={`${company?.name}`}>
 													{company?.name}
 												</MenuItem>
 											))}
