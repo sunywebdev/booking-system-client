@@ -25,6 +25,7 @@ import { CSVLink } from "react-csv";
 import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
 import PersonIcon from "@mui/icons-material/Person";
 import BusinessIcon from "@mui/icons-material/Business";
+import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 
 const Bookings = () => {
 	const [deleted, setDeleted] = useState(false);
@@ -42,7 +43,8 @@ const Bookings = () => {
 				booking?.lastName?.toLowerCase().includes(search.toLowerCase()) ||
 				booking?.txn?.toLowerCase().includes(search.toLowerCase()) ||
 				booking?.phone?.toLowerCase().includes(search.toLowerCase()) ||
-				booking?.company?.toLowerCase().includes(search.toLowerCase()),
+				booking?.company?.toLowerCase().includes(search.toLowerCase()) ||
+				booking?.rideType?.toLowerCase().includes(search.toLowerCase()),
 		);
 		setNewList(searchs);
 	}, [bookings, search]);
@@ -255,6 +257,9 @@ const Bookings = () => {
 														justifyContent: "center",
 														alignItems: "center",
 													}}>
+													{booking?.rideType === "Airport Service" && (
+														<AirplanemodeActiveIcon />
+													)}
 													<BusinessIcon sx={{ mr: 1 }} />
 													{booking?.txn}
 												</div>
@@ -267,6 +272,9 @@ const Bookings = () => {
 														justifyContent: "center",
 														alignItems: "center",
 													}}>
+													{booking?.rideType === "Airport Service" && (
+														<AirplanemodeActiveIcon />
+													)}
 													<PersonIcon sx={{ mr: 1 }} />
 													{booking?.txn}
 												</div>
