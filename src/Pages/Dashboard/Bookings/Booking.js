@@ -349,13 +349,6 @@ const Booking = () => {
 									</Typography>
 									<Divider sx={{ my: 1.5 }} />
 									<Typography gutterBottom variant='body' component='div'>
-										PICKUP DATE, TIME
-									</Typography>
-									<Typography gutterBottom variant='body2' component='div'>
-										{data?.time5}
-									</Typography>
-									<Divider sx={{ my: 1.5 }} />
-									<Typography gutterBottom variant='body' component='div'>
 										PICKUP LOCATION
 									</Typography>
 									<Typography gutterBottom variant='body2' component='div'>
