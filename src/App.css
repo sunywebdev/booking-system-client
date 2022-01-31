@@ -27,6 +27,7 @@
 	background-color: #252525 !important;
 	color: white !important;
 	border-top: 1px solid white !important;
+	justify-content: center !important;
 }
 .MuiButtonBase-root-MuiTab-root.Mui-selected {
 	border-color: #252525 !important;
@@ -58,4 +59,14 @@
 }
 .importantOptions .MuiButton-root {
 	border-color: #ff700a !important;
+}
+.MuiTabs-scrollButtons.Mui-disabled {
+	opacity: 0.3 !important;
+}
+.MuiAppBar-root {
+	background-color: #252525 !important;
+}
+.MuiTabScrollButton-root {
+	background-color: white !important;
+	color: black !important;
 }

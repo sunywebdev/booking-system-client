@@ -335,6 +335,84 @@ const Booking = () => {
 									<Divider sx={{ my: 1.5 }} />
 								</>
 							)}
+							{data?.rideType === "Airport Service" && (
+								<>
+									<Typography gutterBottom variant='body2' component='div'>
+										{data?.rideType}
+									</Typography>
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body' component='div'>
+										PICKUP DATE, TIME
+									</Typography>
+									<Typography gutterBottom variant='body2' component='div'>
+										{data?.time5}
+									</Typography>
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body' component='div'>
+										PICKUP DATE, TIME
+									</Typography>
+									<Typography gutterBottom variant='body2' component='div'>
+										{data?.time5}
+									</Typography>
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body' component='div'>
+										PICKUP LOCATION
+									</Typography>
+									<Typography gutterBottom variant='body2' component='div'>
+										{data?.picupLocation5}
+									</Typography>
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body' component='div'>
+										AIRPORT
+									</Typography>
+									<Typography gutterBottom variant='body2' component='div'>
+										{data?.airport}
+									</Typography>
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body' component='div'>
+										AIRLINE
+									</Typography>
+									<Typography gutterBottom variant='body2' component='div'>
+										{data?.airline || "N/A"}
+									</Typography>
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body' component='div'>
+										FLIGHT NO
+									</Typography>
+									<Typography gutterBottom variant='body2' component='div'>
+										{data?.flightNo || "N/A"}
+									</Typography>
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body' component='div'>
+										TERMINAL
+									</Typography>
+									<Typography gutterBottom variant='body2' component='div'>
+										{data?.terminal || "N/A"}
+									</Typography>
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body' component='div'>
+										FLIGHT TIME
+									</Typography>
+									<Typography gutterBottom variant='body2' component='div'>
+										{data?.flightTime || "N/A"}
+									</Typography>
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body' component='div'>
+										FLIGHT STATUS
+									</Typography>
+									<Typography gutterBottom variant='body2' component='div'>
+										{data?.flightStatus || "N/A"}
+									</Typography>
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body' component='div'>
+										ORIGIN
+									</Typography>
+									<Typography gutterBottom variant='body2' component='div'>
+										{data?.origin || "N/A"}
+									</Typography>
+									<Divider sx={{ my: 1.5 }} />
+								</>
+							)}
 							<Typography gutterBottom variant='body2' component='div'>
 								<b>Passengers</b> :{" "}
 								{data?.passengers === true ? data?.passengersCount : "No"}

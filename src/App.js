@@ -30,6 +30,7 @@ function App() {
 						<Route path='/resetpassword' element={<ResetPass />}></Route>
 						<Route path='/choosevehicle' element={<ChooseVehicle />}></Route>
 						<Route path='/contactdetails' element={<Contact />}></Route>
+						<Route path='/invoice' element={<Invoice />} />
 						<Route path='/totalsummary' element={<TotalSummary />}></Route>
 						<Route path='/confirm' element={<Confirm />}></Route>
 						<Route path='/dashboard' element={<Dashboard />}>
@@ -38,7 +39,6 @@ function App() {
 							<Route path='/dashboard/addcompany' element={<CompanyList />} />
 							<Route path='/dashboard/vehicles' element={<Cars />} />
 							<Route path='/dashboard/bookings' element={<Bookings />} />
-							<Route path='/dashboard/invoice' element={<Invoice />} />
 							<Route path='/dashboard/bookings/:id' element={<Booking />} />
 						</Route>
 					</Routes>

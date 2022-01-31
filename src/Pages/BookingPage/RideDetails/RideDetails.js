@@ -14,6 +14,7 @@ import Tab3 from "./Tab3";
 import { reactLocalStorage } from "reactjs-localstorage";
 import Step0 from "../Steps/Step0";
 import Tab4 from "./Tab4";
+import Tab5 from "./Tab5";
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -84,12 +85,15 @@ export default function RideDetails() {
 								onChange={handleChange}
 								indicatorColor='secondary'
 								textColor='inherit'
-								variant='fullWidth'
+								variant='scrollable'
+								scrollButtons
+								allowScrollButtonsMobile
 								aria-label='full width tabs example'>
 								<Tab label='DISTANCE' {...a11yProps(0)} />
 								<Tab label='HOURLY' {...a11yProps(1)} />
 								<Tab label='FLAT RATE' {...a11yProps(2)} />
 								<Tab label='CHAUFFEUR SERVICES' {...a11yProps(3)} />
+								<Tab label='AIRPORT SERVICES' {...a11yProps(4)} />
 							</Tabs>
 						</AppBar>
 						<SwipeableViews
@@ -107,6 +111,9 @@ export default function RideDetails() {
 							</TabPanel>
 							<TabPanel value={value} index={3} dir={theme.direction}>
 								<Tab4 />
+							</TabPanel>
+							<TabPanel value={value} index={4} dir={theme.direction}>
+								<Tab5 />
 							</TabPanel>
 						</SwipeableViews>
 					</Box>
