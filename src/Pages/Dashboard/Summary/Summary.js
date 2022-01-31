@@ -16,16 +16,19 @@ const Summary = () => {
 			});
 	}, []);
 	const Distance = bookings.filter(
-		(booking) => booking.rideType === "Distance",
+		(booking) => booking?.rideType === "Distance",
 	).length;
 	const Hourly = bookings.filter(
-		(booking) => booking.rideType === "Hourly",
+		(booking) => booking?.rideType === "Hourly",
 	).length;
 	const FlatRate = bookings.filter(
-		(booking) => booking.rideType === "Flat Rate",
+		(booking) => booking?.rideType === "Flat Rate",
 	).length;
 	const ChauffeurServices = bookings.filter(
-		(booking) => booking.rideType === "Chauffeur Services",
+		(booking) => booking?.rideType === "Chauffeur Services",
+	).length;
+	const FlightServices = bookings.filter(
+		(booking) => booking?.rideType === "Airport Service",
 	).length;
 
 	return (
@@ -38,6 +41,7 @@ const Summary = () => {
 						Hourly={Hourly}
 						FlatRate={FlatRate}
 						ChauffeurServices={ChauffeurServices}
+						FlightServices={FlightServices}
 					/>
 				</Grid>
 				<Grid item md={6} xs={12}>
@@ -50,6 +54,7 @@ const Summary = () => {
 						Hourly={Hourly}
 						FlatRate={FlatRate}
 						ChauffeurServices={ChauffeurServices}
+						FlightServices={FlightServices}
 					/>
 				</Grid>
 			</Grid>

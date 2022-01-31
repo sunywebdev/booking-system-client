@@ -234,7 +234,7 @@ const Booking = () => {
 										PICKUP DATE, TIME
 									</Typography>
 									<Typography gutterBottom variant='body2' component='div'>
-										{data?.time2}
+										{new Date(data?.time2).toLocaleString('en-GB')}
 									</Typography>
 									<Divider sx={{ my: 1.5 }} />
 								</>
@@ -270,7 +270,7 @@ const Booking = () => {
 										PICKUP DATE, TIME
 									</Typography>
 									<Typography gutterBottom variant='body2' component='div'>
-										{data?.time1}
+										{new Date(data?.time1).toLocaleString('en-GB')}
 									</Typography>
 									<Divider sx={{ my: 1.5 }} />
 								</>
@@ -300,7 +300,7 @@ const Booking = () => {
 										PICKUP DATE, TIME
 									</Typography>
 									<Typography gutterBottom variant='body2' component='div'>
-										{data?.time3}
+										{new Date(data?.time3).toLocaleString('en-GB')}
 									</Typography>
 									<Divider sx={{ my: 1.5 }} />
 								</>
@@ -330,7 +330,7 @@ const Booking = () => {
 										PICKUP DATE, TIME
 									</Typography>
 									<Typography gutterBottom variant='body2' component='div'>
-										{data?.time4}
+										{new Date(data?.time4).toLocaleString('en-GB')}
 									</Typography>
 									<Divider sx={{ my: 1.5 }} />
 								</>
@@ -345,7 +345,7 @@ const Booking = () => {
 										PICKUP DATE, TIME
 									</Typography>
 									<Typography gutterBottom variant='body2' component='div'>
-										{data?.time5}
+										{new Date(data?.time5).toLocaleString('en-GB')}
 									</Typography>
 									<Divider sx={{ my: 1.5 }} />
 									<Typography gutterBottom variant='body' component='div'>

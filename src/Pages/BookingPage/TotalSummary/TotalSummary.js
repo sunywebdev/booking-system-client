@@ -29,7 +29,7 @@ const TotalSummary = () => {
 	const destination = "/confirm";
 	const confirm = () => {
 		const data = {
-			bookingTime: new Date().toLocaleString(),
+			bookingTime: new Date().toLocaleString('en-GB'),
 			...vehicles,
 			...rideDetails,
 			...contactDetails,
@@ -244,7 +244,7 @@ const TotalSummary = () => {
 									PICKUP DATE, TIME
 								</Typography>
 								<Typography gutterBottom variant='body2' component='div'>
-									{rideDetails?.time2}
+									{new Date(rideDetails?.time2).toLocaleString('en-GB')}
 								</Typography>
 								<Divider sx={{ my: 1.5 }} />
 							</>
@@ -280,7 +280,7 @@ const TotalSummary = () => {
 									PICKUP DATE, TIME
 								</Typography>
 								<Typography gutterBottom variant='body2' component='div'>
-									{rideDetails?.time1}
+									{new Date(rideDetails?.time1).toLocaleString('en-GB')}
 								</Typography>
 								<Divider sx={{ my: 1.5 }} />
 							</>
@@ -310,7 +310,7 @@ const TotalSummary = () => {
 									PICKUP DATE, TIME
 								</Typography>
 								<Typography gutterBottom variant='body2' component='div'>
-									{rideDetails?.time3}
+									{new Date(rideDetails?.time3).toLocaleString('en-GB')}
 								</Typography>
 								<Divider sx={{ my: 1.5 }} />
 							</>
@@ -348,7 +348,7 @@ const TotalSummary = () => {
 									PICKUP DATE, TIME
 								</Typography>
 								<Typography gutterBottom variant='body2' component='div'>
-									{rideDetails?.time5}
+									{new Date(rideDetails?.time5).toLocaleString('en-GB')}
 								</Typography>
 								<Divider sx={{ my: 1.5 }} />
 								<Typography gutterBottom variant='body' component='div'>

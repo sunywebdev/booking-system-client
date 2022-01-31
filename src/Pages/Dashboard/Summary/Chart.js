@@ -78,6 +78,7 @@ export default function App({
 	FlatRate,
 	Hourly,
 	Distance,
+	FlightServices,
 }) {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const onPieEnter = useCallback(
@@ -92,6 +93,7 @@ export default function App({
 		{ name: "Hourly", value: Hourly },
 		{ name: "FlatRate", value: FlatRate },
 		{ name: "Chauffeur", value: ChauffeurServices },
+		{ name: "Flight", value: FlightServices },
 	];
 	return (
 		<ResponsiveContainer width='100%' height={400} style={{ margin: "0 auto" }}>

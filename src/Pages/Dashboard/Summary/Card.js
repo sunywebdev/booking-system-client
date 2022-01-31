@@ -6,12 +6,41 @@ import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 import TrendingFlatIcon from "@mui/icons-material/TrendingFlat";
 import DriveEtaIcon from "@mui/icons-material/DriveEta";
 import ArchitectureIcon from "@mui/icons-material/Architecture";
+import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 
-const Card = ({ bookings, ChauffeurServices, FlatRate, Hourly, Distance }) => {
+const Card = ({
+	bookings,
+	ChauffeurServices,
+	FlatRate,
+	Hourly,
+	Distance,
+	FlightServices,
+}) => {
 	return (
 		<div>
 			<Grid container spacing={2}>
-				<Grid item md={3} xs={12} sm={6}>
+				<Grid item md={4} xs={12} sm={6}>
+					<Paper elevation={3}>
+						<Box display='flex' justifyContent='space-between'>
+							<Box
+								className='bgColor'
+								sx={{ p: 3, color: "white" }}
+								display='flex'
+								alignItems='center'>
+								<AirplanemodeActiveIcon sx={{ fontSize: 50 }} />
+							</Box>
+							<Box sx={{ textAlign: "right", m: 3, color: "black" }}>
+								<Typography variant='h5' component='div'>
+									Flight
+								</Typography>
+								<Typography variant='h5' component='div'>
+									<CountUp isCounting end={FlightServices} duration={2} />
+								</Typography>
+							</Box>
+						</Box>
+					</Paper>
+				</Grid>
+				<Grid item md={4} xs={12} sm={6}>
 					<Paper elevation={3}>
 						<Box display='flex' justifyContent='space-between'>
 							<Box
@@ -32,7 +61,7 @@ const Card = ({ bookings, ChauffeurServices, FlatRate, Hourly, Distance }) => {
 						</Box>
 					</Paper>
 				</Grid>
-				<Grid item md={3} xs={12} sm={6}>
+				<Grid item md={4} xs={12} sm={6}>
 					<Paper elevation={3}>
 						<Box display='flex' justifyContent='space-between'>
 							<Box
@@ -53,7 +82,7 @@ const Card = ({ bookings, ChauffeurServices, FlatRate, Hourly, Distance }) => {
 						</Box>
 					</Paper>
 				</Grid>
-				<Grid item md={3} xs={12} sm={6}>
+				<Grid item md={6} xs={12} sm={6}>
 					<Paper elevation={3}>
 						<Box display='flex' justifyContent='space-between'>
 							<Box
@@ -74,7 +103,7 @@ const Card = ({ bookings, ChauffeurServices, FlatRate, Hourly, Distance }) => {
 						</Box>
 					</Paper>
 				</Grid>
-				<Grid item md={3} xs={12} sm={6}>
+				<Grid item md={6} xs={12} sm={12}>
 					<Paper elevation={3}>
 						<Box display='flex' justifyContent='space-between'>
 							<Box
