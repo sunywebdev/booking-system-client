@@ -234,7 +234,7 @@ const Booking = () => {
 										PICKUP DATE, TIME
 									</Typography>
 									<Typography gutterBottom variant='body2' component='div'>
-										{new Date(data?.time2).toLocaleString('en-GB')}
+										{new Date(data?.time2).toLocaleString("en-GB")}
 									</Typography>
 									<Divider sx={{ my: 1.5 }} />
 								</>
@@ -270,7 +270,7 @@ const Booking = () => {
 										PICKUP DATE, TIME
 									</Typography>
 									<Typography gutterBottom variant='body2' component='div'>
-										{new Date(data?.time1).toLocaleString('en-GB')}
+										{new Date(data?.time1).toLocaleString("en-GB")}
 									</Typography>
 									<Divider sx={{ my: 1.5 }} />
 								</>
@@ -300,7 +300,7 @@ const Booking = () => {
 										PICKUP DATE, TIME
 									</Typography>
 									<Typography gutterBottom variant='body2' component='div'>
-										{new Date(data?.time3).toLocaleString('en-GB')}
+										{new Date(data?.time3).toLocaleString("en-GB")}
 									</Typography>
 									<Divider sx={{ my: 1.5 }} />
 								</>
@@ -330,7 +330,7 @@ const Booking = () => {
 										PICKUP DATE, TIME
 									</Typography>
 									<Typography gutterBottom variant='body2' component='div'>
-										{new Date(data?.time4).toLocaleString('en-GB')}
+										{new Date(data?.time4).toLocaleString("en-GB")}
 									</Typography>
 									<Divider sx={{ my: 1.5 }} />
 								</>
@@ -345,7 +345,7 @@ const Booking = () => {
 										PICKUP DATE, TIME
 									</Typography>
 									<Typography gutterBottom variant='body2' component='div'>
-										{new Date(data?.time5).toLocaleString('en-GB')}
+										{new Date(data?.time5).toLocaleString("en-GB")}
 									</Typography>
 									<Divider sx={{ my: 1.5 }} />
 									<Typography gutterBottom variant='body' component='div'>
@@ -406,7 +406,49 @@ const Booking = () => {
 									<Divider sx={{ my: 1.5 }} />
 								</>
 							)}
-							<Typography gutterBottom variant='body2' component='div'>
+							{data?.passengers === true && (
+								<Typography gutterBottom variant='body2' component='div'>
+									<b>Passengers</b> :{" "}
+									{data?.passengers === true ? data?.passengersCount : "No"}
+								</Typography>
+							)}
+							{data?.luggage === true && (
+								<>
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body2' component='div'>
+										<b>Luggage</b> :{" "}
+										{data?.luggage === true ? data?.luggageCount : "No"}
+									</Typography>
+								</>
+							)}
+							{data?.babySeat === true && (
+								<>
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body2' component='div'>
+										<b>Child Seat</b> :{" "}
+										{data?.babySeat === true ? data?.babyCount : "No"}
+									</Typography>
+								</>
+							)}
+							{data?.carSeat === true && (
+								<>
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body2' component='div'>
+										<b>Car Seat</b> :{" "}
+										{data?.carSeat === true ? data?.carSeatCount : "No"}
+									</Typography>
+								</>
+							)}
+							{data?.wheelchair === true && (
+								<>
+									<Divider sx={{ my: 1.5 }} />
+									<Typography gutterBottom variant='body2' component='div'>
+										<b>Wheel Chair</b> :{" "}
+										{data?.wheelchair === true ? data?.wheelchairCount : "No"}
+									</Typography>
+								</>
+							)}
+							{/* <Typography gutterBottom variant='body2' component='div'>
 								<b>Passengers</b> :{" "}
 								{data?.passengers === true ? data?.passengersCount : "No"}
 							</Typography>
@@ -429,7 +471,7 @@ const Booking = () => {
 							<Typography gutterBottom variant='body2' component='div'>
 								<b>Wheel Chair</b> :{" "}
 								{data?.wheelchair === true ? data?.wheelchairCount : "No"}
-							</Typography>
+							</Typography> */}
 							<Divider sx={{ my: 1.5 }} />
 						</Box>
 					</Grid>

@@ -10,6 +10,7 @@ import TotalSummary from "./Pages/BookingPage/TotalSummary/TotalSummary";
 import AddCar from "./Pages/Dashboard/AddCar/AddCar";
 import Booking from "./Pages/Dashboard/Bookings/Booking";
 import Bookings from "./Pages/Dashboard/Bookings/Bookings";
+import Car from "./Pages/Dashboard/Cars/Car";
 import Cars from "./Pages/Dashboard/Cars/Cars";
 import CompanyList from "./Pages/Dashboard/CompanyList/CompanyList";
 import Dashboard from "./Pages/Dashboard/Dashboard";
@@ -38,6 +39,7 @@ function App() {
 							<Route path='/dashboard/addvehicle' element={<AddCar />} />
 							<Route path='/dashboard/addcompany' element={<CompanyList />} />
 							<Route path='/dashboard/vehicles' element={<Cars />} />
+							<Route path='/dashboard/vehicles/:id' element={<Car />} />
 							<Route path='/dashboard/bookings' element={<Bookings />} />
 							<Route path='/dashboard/bookings/:id' element={<Booking />} />
 						</Route>

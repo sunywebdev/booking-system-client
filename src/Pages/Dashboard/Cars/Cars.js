@@ -11,11 +11,13 @@ import {
 	TableRow,
 	Typography,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 const Cars = () => {
 	const [deleted, setDeleted] = useState(false);
@@ -109,6 +111,22 @@ const Cars = () => {
 												variant='contained'>
 												<DeleteIcon />
 											</Button>
+											<Link
+												to={`/dashboard/vehicles/${car?._id}`}
+												style={{ textDecoration: "none" }}>
+												<Button
+													className='buttonColor'
+													sx={{
+														fontWeight: "bold",
+														border: "2px solid",
+														backgroundColor: "transparent",
+														borderRadius: "25px",
+														m: 0.5,
+													}}
+													variant='contained'>
+													<EditIcon />
+												</Button>
+											</Link>
 										</TableCell>
 									</TableRow>
 								))}
